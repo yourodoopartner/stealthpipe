@@ -1,0 +1,23 @@
+<odoo>
+    <record id="action_import_customer" model="ir.actions.server">
+        <field name="name">import customer</field>
+        <field name="model_id" ref="model_res_company"/>
+        <field name="binding_model_id" ref="model_res_company"/>
+        <field name="binding_view_types">form</field>
+        <field name="state">code</field>
+        <field name="code">
+            records.import_customer()
+        </field>
+    </record>
+
+    <record id="action_update_vendor" model="ir.actions.server">
+        <field name="name"> import vendor</field>
+        <field name="model_id" ref="model_res_company"/>
+        <field name="binding_model_id" ref="model_res_company"/>
+        <field name="binding_view_types">form</field>
+        <field name="state">code</field>
+        <field name="code">
+            records.import_vendor()
+        </field>
+    </record>
+</odoo>
