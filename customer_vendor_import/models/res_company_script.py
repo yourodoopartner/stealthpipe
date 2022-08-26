@@ -33,7 +33,7 @@ class ResCompany(models.Model):
 
         shipping_country_dict = {}
         for country in country_obj.search([]):
-            shipping_country_dict.update({country.name: country.id})
+            shipping_country_dict.update({country.code: country.id})
 
         module_path = get_module_path('customer_vendor_import')
         module_path += '/models/customer_list.xlsx'
@@ -189,7 +189,7 @@ class ResCompany(models.Model):
 
         shipping_country_dict = {}
         for country in country_obj.search([]):
-            shipping_country_dict.update({country.name: country.id})
+            shipping_country_dict.update({country.code: country.id})
 
         module_path = get_module_path('customer_vendor_import')
         module_path += '/models/vendor_list.xlsx'
