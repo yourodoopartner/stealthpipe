@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherited view of product template to add fields -->
+        <record id="product_product_new_form_view_inherit" model="ir.ui.view">
+            <field name="name">product.template.form.view.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//label[@for='weight']" position="before">
+                    <field name="diameter"/>
+                    <field name="wall_thickness"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
