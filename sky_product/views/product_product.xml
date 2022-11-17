@@ -8,8 +8,15 @@
             <field name="inherit_id" ref="product.product_normal_form_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//label[@for='weight']" position="before">
-                    <field name="diameter"/>
-                    <field name="wall_thickness"/>
+                    <label for="diameter"/>
+                    <div>
+                        <field name="diameter" class="oe_inline" style="vertical-align:baseline"/> inches
+                    </div>
+                    <label for="wall_thickness"/>
+                    <div>
+                        <field name="wall_thickness" class="oe_inline" style="vertical-align:baseline"/> inches
+                    </div>
+                    <field name="length"/>
                 </xpath>
             </field>
         </record>
