@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="landed_cost_wiz_view" model="ir.ui.view">
+        <field name="name">landed.cost.form.wiz</field>
+        <field name="model">landed.cost.wiz</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="landed_cost_ids" nolabel="1">
+                    <tree editable="bottom">
+                        <field name="landed_cost" domain="[('landed_cost_ok', '=', True)]"/>
+                        <field name="account_id" options="{'no_create': True}"/>
+                        <field name="split_method"/>
+                        <field name="amount"/>
+                    </tree>
+                </field>
+                <footer>
+                    <button name="add_cost" string="Add" type="object" class="btn-primary"/>
+                    <button special="cancel" string="Cancel" class="btn-danger"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_landed_cost_wiz" model="ir.actions.act_window">
+        <field name="name">Add Landed Cost</field>
+        <field name="res_model">landed.cost.wiz</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

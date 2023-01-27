@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_picking_form" model="ir.ui.view">
+            <field name="name">stock.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='origin']" position="after">
+                    <field name="bill_of_lading" readonly="1"
+                           attrs="{'invisible': [('picking_type_code', '!=', 'incoming')]}"/>
+                </xpath>
+                <xpath expr="//form/header" position="inside">
+                    <button name="%(action_report_bill_of_lading)d" type="action" string="Bill of Lading"
+                            attrs="{'invisible': [('picking_type_code', '!=', 'incoming')]}"/>
+                </xpath>
+
+                <xpath expr="/form/header" position="inside">
+                    <button name="%(action_landed_cost_wiz)d"
+                            type="action"
+                            string="Add Landed Cost" class="btn-primary"
+                            attrs="{'invisible': [('picking_type_code', '!=', 'incoming')]}"/>
+                </xpath>
+                <xpath expr="//page[@name='note']" position="after">
+                    <page string="Landed Cost" name="landed_cost" attrs="{'invisible': [('picking_type_code', '!=', 'incoming')]}">
+                        <field name="landed_cost_ids" nolabel="1">
+                            <tree edit="false" create="false">
+                                <field name="landed_cost" domain="[('landed_cost_ok', '=', True)]"/>
+                                <field name="account_id" options="{'no_create': True}"/>
+                                <field name="split_method"/>
+                                <field name="amount"/>
+                            </tree>
+                            <form>
+                                <sheet>
+                                    <group>
+                                        <field name="landed_cost" domain="[('landed_cost_ok', '=', True)]"
+                                               readonly="1"/>
+                                        <field name="account_id" options="{'no_create': True}" readonly="1"/>
+                                        <field name="split_method" readonly="1"/>
+                                        <field name="amount" readonly="1"/>
+                                    </group>
+                                </sheet>
+                            </form>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

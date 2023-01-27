@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--Warehouse Access Group-->
+        <record id="group_warehouse_access" model="res.groups">
+            <field name="name">User Warehouse Access</field>
+        </record>
+
+        <!--Warehouse Rule-->
+        <record id="user_warehouse_rule" model="ir.rule">
+            <field name="name">User Warehouse Rule</field>
+            <field name="model_id" ref="stock.model_stock_warehouse"/>
+            <field name="domain_force">[('id', 'in', user.warehouse_ids.ids)]</field>
+            <field name="groups" eval="[(4, ref('sky_stock.group_warehouse_access'))]"/>
+        </record>
+
+        <!-- Location Rul-->
+         <record id="user_warehouse_location_rule" model="ir.rule">
+            <field name="name">User Warehouse Location Rule</field>
+            <field name="model_id" ref="stock.model_stock_location"/>
+            <field name="domain_force">[('warehouse_id', 'in', user.warehouse_ids.ids)]</field>
+                <field name="groups" eval="[(4, ref('sky_stock.group_warehouse_access'))]"/>
+            <field eval="True" name="global"/>
+        </record>
+
+        <!-- Operation Type Rule-->
+        <record id="user_operation_type_rule" model="ir.rule">
+            <field name="name">User Operation Type Rule</field>
+            <field name="model_id" ref="stock.model_stock_picking_type"/>
+            <field name="domain_force">[('warehouse_id', 'in', user.warehouse_ids.ids)]</field>
+            <field name="groups" eval="[(4, ref('sky_stock.group_warehouse_access'))]"/>
+        </record>
+
+        <!-- Transfer Rule-->
+        <record id="user_transfer_rule" model="ir.rule">
+            <field name="name">User Transfer Rule</field>
+            <field name="model_id" ref="stock.model_stock_picking"/>
+                <field name="domain_force">['|','|','|','|','|',
+                    ('picking_type_id', 'in', user.warehouse_ids.in_type_id.ids),
+                    ('picking_type_id', 'in', user.warehouse_ids.int_type_id.ids),
+                    ('picking_type_id', 'in', user.warehouse_ids.out_type_id.ids),
+                    ('picking_type_id', 'in', user.warehouse_ids.pack_type_id.ids),
+                    ('picking_type_id', 'in', user.warehouse_ids.pick_type_id.ids),
+                    ('picking_type_id', 'in', user.warehouse_ids.return_type_id.ids),]</field>
+            <field name="groups" eval="[(4, ref('sky_stock.group_warehouse_access'))]"/>
+        </record>
+
+        <!-- Replenishment Rule-->
+        <record id="user_replenishment_rule" model="ir.rule">
+            <field name="name">User Replenishment Rule</field>
+            <field name="model_id" ref="stock.model_stock_warehouse_orderpoint"/>
+            <field name="domain_force">[('warehouse_id', 'in', user.warehouse_ids.ids)]</field>
+            <field name="groups" eval="[(4, ref('sky_stock.group_warehouse_access'))]"/>
+        </record>
+
+        <!-- Inventory Adjustments Rule-->
+        <record id="user_inventory_adjustments_rule" model="ir.rule">
+            <field name="name">User Inventory Adjustments Rule</field>
+            <field name="model_id" ref="stock.model_stock_quant"/>
+            <field name="domain_force">[('location_id.warehouse_id', 'in', user.warehouse_ids.ids)]</field>
+            <field name="groups" eval="[(4, ref('sky_stock.group_warehouse_access'))]"/>
+        </record>
+
+        <!-- Scrap Orders Rule-->
+        <record id="user_scarp_order_rule" model="ir.rule">
+            <field name="name">User Scrap Order Rule</field>
+            <field name="model_id" ref="stock.model_stock_scrap"/>
+            <field name="domain_force">[('location_id.warehouse_id', 'in', user.warehouse_ids.ids)]</field>
+            <field name="groups" eval="[(4, ref('sky_stock.group_warehouse_access'))]"/>
+        </record>
+
+    </data>
+</odoo>
