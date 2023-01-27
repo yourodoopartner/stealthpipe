@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="custom_external_layout">
+            <t t-if="not o" t-set="o" t-value="doc"/>
+            <t t-if="not company">
+                <!-- Multicompany -->
+                <t t-if="company_id">
+                    <t t-set="company" t-value="company_id"/>
+                </t>
+                <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                    <t t-set="company" t-value="o.company_id.sudo()"/>
+                </t>
+                <t t-else="else">
+                    <t t-set="company" t-value="res_company"/>
+                </t>
+            </t>
+            <t t-call="sky_stock.external_layout_standard">
+                <t t-out="0"/>
+            </t>
+        </template>
+
+        <template id="external_layout_standard">
+            <div t-attf-class="header o_company_#{company.id}_layout container" t-att-style="report_header_style">
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-3">
+                            <t t-if="company.logo">
+                                <center>
+                                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)"
+                                         style="height: 100px; width: 100px;" alt="Logo"/>
+                                </center>
+                            </t>
+                        </div>
+                        <div class="col-6">
+                            <center>
+                                <h4>
+                                    <strong>Bon de livraison / Bill of lading</strong>
+                                </h4>
+                                <h5>
+                                    <strong>Stealth Pipe and Steel Inc.</strong>
+                                </h5>
+                                <h5>
+                                    <strong>TEL:
+                                        <t t-esc="company.phone"/>
+                                        / FAX:
+                                        <t t-esc="company.phone"/>
+                                    </strong>
+                                </h5>
+                            </center>
+                        </div>
+                        <div class="col-3">
+                            <span/>
+                        </div>
+                    </div>
+                </div>
+
+            <div t-attf-class="article o_report_layout_standard o_company_#{company.id}_layout {{  'o_layout_background' if company.layout_background in ['Geometric', 'Custom']  else  '' }}" t-attf-style="background-image: url({{ 'data:image/png;base64,%s' % company.layout_background_image.decode('utf-8') if company.layout_background_image and company.layout_background == 'Custom' else '/base/static/img/bg_background_template.jpg' if company.layout_background == 'Geometric' else ''}});" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+                <div class="pt-5">
+                    <!-- This div ensures that the address is not cropped by the header. -->
+                    <t t-call="web.address_layout"/>
+                </div>
+                <t t-out="0"/>
+            </div>
+        </template>
+
+        <template id="report_receipt_bill_of_lading">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="sky_stock.custom_external_layout">
+                        <div class="page">
+                            <table style="width:100%; margin:0px; padding:0px;">
+                                <tr style="margin:0px; padding:0px;">
+                                    <table style="width:100%; height: 100px; border-collapse: collapse; border: 2px solid; margin:0px; padding:0px;"
+                                           class="border border-dark">
+                                        <tr style="width:100%; border: 2px solid; margin:0px; padding:0px;">
+                                            <th style="width:35%; vertical-align:middle; text-align: center; border-right:2px solid;  border-left:2px solid;" class="text-center">
+                                                <span>Nom du Transporteur / Name of Carrier</span>
+                                            </th>
+                                            <th style="width:28%; text-align: center; border-right:2px solid;  border-left:2px solid; vertical-align:middle;"
+                                                class="text-center">
+                                                <span>Point D'origines / Point of Origin:</span>
+                                            </th>
+                                            <th style="width:37%; text-align: center; border-right:2px solid;  border-left:2px solid; vertical-align:middle;"
+                                                class="text-center">
+                                                <span>Date d'Expédition / Shipping Date:</span>
+                                            </th>
+                                        </tr>
+                                        <tr style="width:100%; border: 2px solid;">
+                                            <td style="vertical-align:middle; width:35%; text-align: center; border-right:2px solid;  border-left:2px solid;" class="text-center">
+                                                <span t-field="o.partner_id.name"/>
+                                            </td>
+                                            <td style="vertical-align:middle; width:28%; text-align: center; border-right:2px solid;  border-left:2px solid;"
+                                                class="text-center">
+                                                <span t-field="o.company_id.name"/>
+                                            </td>
+                                            <td style="vertical-align:middle; width:37%; text-align: center; border-right:2px solid;  border-left:2px solid;"
+                                                class="text-center">
+                                                <span t-esc="o.scheduled_date.strftime('%b')"/>&#160;&#160;<span t-esc="o.scheduled_date.strftime('%d')"/>/<span t-esc="o.scheduled_date.strftime('%y')"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </tr>
+                                <tr style="width:100%;">
+                                    <table style="width:100%; height: 100px; border-collapse: collapse;"
+                                           class="border border-dark">
+                                        <tr style="width:100%;">
+                                            <td style="width:37%; text-align: center; border-right:2px solid;  border-left:2px solid; vertical-align:middle;" class="text-center">
+                                                <span>Receveur - Adresse de livraison
+                                                    <br/>
+                                                    Consignee - Delivery address
+                                                </span>
+                                            </td>
+                                            <td style="width:33%; text-align: center; border-right:2px solid;  border-left:2px solid; vertical-align:middle;"
+                                                class="text-center">
+                                                <span>Expéditeur / Shipper:</span>
+                                            </td>
+                                            <td style="width:15%; text-align: center; border-right:2px solid;  border-left:2px solid; vertical-align:middle;"
+                                                class="text-center">
+                                                <span># Bon Commande<br/>P.O. #:</span>
+                                            </td>
+                                            <td style="width:15%; text-align: center; border-right:2px solid;  border-left:2px solid; vertical-align:middle;"
+                                                class="text-center">
+                                                <span>BOL #</span>
+                                            </td>
+                                        </tr>
+                                        <tr style="width:100%; border: 2px solid;">
+                                            <td style="width:37%; text-align: center; border-right:2px solid;  border-left:2px solid; vertical-align:middle;" class="text-center">
+                                                <span t-field="o.partner_id.street"/>,
+                                                &#160;<span t-field="o.partner_id.street2"/>,
+                                                &#160;<span t-field="o.partner_id.city"/>,
+                                                &#160;<span t-field="o.partner_id.state_id"/>,
+                                                &#160;<span t-field="o.partner_id.zip"/>,
+                                                &#160;<span t-field="o.partner_id.country_id"/>
+                                            </td>
+                                            <td style="width:33%; text-align: center; border: 1px solid; vertical-align:middle;"
+                                                class="text-center">
+                                                <span>Stealth Pipe &amp; Steel Inc.</span>
+                                            </td>
+                                            <td style="width:15%; text-align: center; border: 1px solid; vertical-align:middle;"
+                                                class="text-center">
+                                                <span t-field="o.origin"/>
+                                            </td>
+                                            <td style="width:15%; text-align: center; border-right:2px solid;  border-left:2px solid; vertical-align:middle;"
+                                                class="text-center">
+                                                <span t-field="o.bill_of_lading"/>
+                                            </td>
+                                        </tr>
+                                        <tr style="width:100%; border: 2px solid;">
+                                            <td style="width:37%; text-align: center; border-right:2px solid;  border-left:2px solid; vertical-align:middle;" rowspan="2"
+                                                class="text-center">
+                                                <!--                                            <span>Wolverton For Stealth</span>-->
+                                            </td>
+                                            <td style="width:33%; text-align: center; border-right:2px solid; vertical-align:middle;  border-left:2px solid;"
+                                                colspan="2"
+                                                class="text-center">
+                                                <span>Directives de Livraison
+                                                    <br/>
+                                                    Delivery Instructions
+                                                </span>
+                                            </td>
+                                            <td style="width:15%; text-align: center; border-right:2px solid; vertical-align:middle; border-left:2px solid;"
+                                                class="text-center">
+                                                <span>Poids Total<br/>Total Weight
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr style="width:100%; border: 2px solid;">
+                                            <td style="width:33%; height: 4rem; vertical-align:middle; text-align: center; border-right:2px solid;  border-left:2px solid;" colspan="2" class="text-center">
+                                            </td>
+                                            <td style="width:15%; height: 4rem; vertical-align:middle; text-align: center; border-right:2px solid;  border-left:2px solid;"
+                                                class="text-center">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </tr>
+                                <tr style="width:100%; border: 2px solid;">
+                                    <table style="width:100%; height: 100px; border-collapse: collapse; border: 2px solid;"
+                                           class="border border-dark">
+                                        <tr style="width:100%; border-top: 0px;">
+                                            <td style="width:17%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;" class="text-center">
+                                                <span>Matériel / Material</span>
+                                            </td>
+                                            <td style="width:7%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
+                                                class="text-center">
+                                                <span>Pcs</span>
+                                            </td>
+                                            <td style="width:11%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
+                                                class="text-center">
+                                                <span>Pied / Feet</span>
+                                            </td>
+                                            <td style="width:50%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
+                                                class="text-center">
+                                                <span>Description</span>
+                                            </td>
+                                            <td style="width:15%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
+                                                class="text-center">
+                                                <span>Poids (Lbs)
+                                                    <br/>
+                                                    Weight (Lbs)
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <t t-foreach="o.move_ids_without_package" t-as="line">
+                                        <tr style="width:100%; border: 2px solid;">
+                                            <td style="width:17%; vertical-align:middle; text-align: center; border-left:2px solid;"
+                                                class="text-center">
+                                                <span t-field="line.product_id"/>
+                                            </td>
+                                            <td style="width:7%; vertical-align:middle; text-align: center; border: 1px solid;"
+                                                class="text-center">
+                                                <span t-field="line.product_uom_qty"/>
+                                            </td>
+                                            <td style="width:11%; vertical-align:middle; text-align: center; border: 1px solid;"
+                                                class="text-center">
+                                                <span></span>
+                                            </td>
+                                            <td style="width:50%; vertical-align:middle; text-align: center; border: 1px solid;"
+                                                class="text-center">
+                                                <span t-field="line.product_id.name"/>
+                                            </td>
+                                            <td style="width:15%; vertical-align:middle; text-align: center; border-right:2px solid;"
+                                                class="text-center">
+                                                <span>44,455</span>
+                                            </td>
+                                        </tr>
+                                        </t>
+                                    </table>
+                                </tr>
+                                <tr style="width:100%; border: 2px solid;">
+                                    <table style="width:100%; height: 100px; border-collapse: collapse; border: 2px solid;"
+                                           class="border border-dark">
+                                        <tr style="width:100%;">
+                                            <td style="width:24%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
+                                                class="text-center">
+                                                <span>Nombre de pièces total<br/>Totals Pieces
+                                                </span>
+                                            </td>
+                                            <td style="width:37%; vertical-align:middle; text-align: center; border-right:2px solid; border-bottom:2px solid; border-left:2px solid;"
+                                                rowspan="2"
+                                                class="text-center">
+                                                <span>Transport / Freight</span>
+                                            </td>
+                                            <td style="width:24%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
+                                                class="text-center">
+                                                <span>Pépayé / Prepaid</span>
+                                            </td>
+                                            <td style="width:15%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
+                                                class="text-center">
+                                                <!--                                            <span>44,455</span>-->
+                                            </td>
+                                        </tr>
+                                        <tr style="width:100%; border: 2px solid;">
+                                            <td style="width:24%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
+                                                class="text-center">
+                                            </td>
+                                            <td style="width:24%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
+                                                class="text-center">
+                                                <span>Collecte / Collect</span>
+                                            </td>
+                                            <td style="width:15%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
+                                                class="text-center">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </tr>
+                                <tr style="width:100%; border: 2px solid;">
+                                    <table style="width:100%; height: 100px; border-collapse: collapse; border: 2px solid;"
+                                           class="border border-dark">
+                                        <tr style="width:100%;">
+                                            <td style="width:35%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid; border-bottom:2px solid;"
+                                                class="text-center">
+                                                <span>Expéditeur / Shipper</span>
+                                            </td>
+                                            <td style="width:32%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid; border-bottom:2px solid;"
+                                                class="text-center">
+                                                <span>Transporteur ou Agent<br/>Carrier or Agent
+                                                </span>
+                                            </td>
+                                            <td style="width:33%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid; border-bottom:2px solid;"
+                                                class="text-center">
+                                                <span>Consignee</span>
+                                            </td>
+                                        </tr>
+                                        <tr style="width:100%;">
+                                            <td style="width:35%; vertical-align:middle; text-align: center; border-top:1px solid; border-right:2px solid; border-left:2px solid;"
+                                                class="text-center">
+                                                <span>Stealth Pipe And Steel Inc.</span>
+                                            </td>
+                                            <td style="width:32%; vertical-align:middle; text-align: center; border-top:1px solid; border-right:2px solid; border-left:2px solid;"
+                                                class="text-center">
+                                                <span t-field="o.partner_id"/>
+                                            </td>
+                                            <td style="width:33%; vertical-align:middle; text-align: center; border-top:1px solid; border-right:2px solid; border-left:2px solid;"
+                                                class="text-center">
+                                                <span>Wolverton Stealth</span>
+                                            </td>
+                                        </tr>
+                                        <tr style="width:100%;">
+                                            <td style="width:35%; vertical-align:middle; border: 1px solid; height: 4rem; border-bottom:2px solid; border-right:2px solid; border-left:2px solid;">
+                                                <span>
+                                                    <b>X</b>
+                                                </span>
+                                            </td>
+                                            <td style="width:32%; vertical-align:middle; border: 1px solid; height: 4rem; border-bottom:2px solid; border-left:2px solid;">
+                                                <span>
+                                                    <b>X</b>
+                                                </span>
+                                            </td>
+                                            <td style="width:33%; vertical-align:middle; border: 1px solid; height: 4rem; border-bottom:2px solid; border-right:2px solid; border-left:2px solid;">
+                                                <span>
+                                                    <b>X</b>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </tr>
+                            </table>
+                            <p style="text-align: center; margin-bottom:0px; padding-bottom:0px;">COMBINATION SHORT FORM OF STRAIGHT BILL OF LADING EXPRESS
+                                SHIPPING CONTRACT, ADOPTED BY RAILFREIGHT AND EXPRESS CARRIERS
+                                SUBJECT TO THE JURISDICTION OF THE CANADIAN TRANSPORT COMMISSION.
+                            </p>
+                            <div class="container-fluid" style="margin:0px; padding:0px;">
+                                <div class="row" style="margin:0px; padding:0px;">
+                                    <div class="col-6" style="margin:0px; padding:0px;"><span>ISSUED AT SHIPPERS REQUEST</span></div>
+                                    <div class="col-6" style="margin:0px; padding:0px; text-align:right;"><span>Received</span></div>
+                                </div>
+                            </div>
+                            <p style="text-align: center;">subjects to the rules for the carriage of express and
+                                non-carload
+                                freight traffic and tariffs in effect on the date of issue of this original shipping
+                                contract (bill of
+                                lading). Goods described below in apparent good order, except as noted (contents and
+                                condition of contents of packages unknown) marked, consigned and
+                                destined as indicated below which said company agrees to carry to it’s usual place
+                                of
+                                delivery at said destination if on its road, otherwise to deliver to an other
+                                carrier on the route to said destination. It is mutually agreed as to each carrier
+                                of all or
+                                any of said goods over all or any portion of said route to destination,
+                                and as to each party any time interested in all or any of said goods, that every
+                                service to
+                                be performed here under shall be subject to all the terms and
+                                conditions (which are hereby incorporated by reference and have the same force and
+                                effect as
+                                if the same where severally, fully and specifically set forth
+                                herein).
+                            </p>
+                            <p style="text-align: center;">1.
+                                Approved by the Board of Transport Commissioners for Canada by General Order No. T
+                                5, dated
+                                February 1, 1965 set forth in the Canadian Freight
+                                Classifications and also available at all Railway Agency stations and freight
+                                offices upon
+                                request, when said goods
+                                <br/>2. Of the bill of lading of the water carrier as provided in it’s tariffs of
+                                Rules and
+                                Regulations when said goods are carried by water carrier; or
+                                <br/>3. Of the bill of lading set forth in or prescribed by the relevant tariffs,
+                                classification, statutes and regulations pertaining to motor carrier’s services when
+                                said
+                                goods are carried throughout by a motor carrier; or
+                                <br/>4. Of the bill of lading form R T 200, approved by the Quebec Transportation
+                                Board on
+                                August 5, 1960 when the said goods originating in Quebec are to be
+                                carried by a motor freight;
+                                <br/>5. Or approved by the Board of Transport Commissioners for Canada by General
+                                Order No.
+                                T 43, set forth in the Rules for the Carriage of Express and Non-
+                                Carload Freight Traffic and also available at all express and railway agency
+                                stations and
+                                express and freight offices upon request, when said goods are carried
+                                <br/>by a rail carrier and which are agreed to by the shipper and accepted for
+                                himself and
+                                his assigns.
+                            </p>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
