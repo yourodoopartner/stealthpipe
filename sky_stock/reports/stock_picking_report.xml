@@ -4,7 +4,7 @@
         <record id="action_report_bill_of_lading" model="ir.actions.report">
             <field name="name">Bill Of Lading</field>
             <field name="model">stock.picking</field>
-            <field name="report_type">qweb-html</field>
+            <field name="report_type">qweb-pdf</field>
             <field name="report_name">sky_stock.report_receipt_bill_of_lading</field>
             <field name="report_file">sky_stock.report_receipt_bill_of_lading</field>
             <field name="print_report_name">('BOL - %s' % (object.bill_of_lading))</field>

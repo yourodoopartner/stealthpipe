@@ -1,3 +1,10 @@
+# -*- encoding: utf-8 -*-
+##########################################################################################
+#
+#    Copyright (C) 2019 Skyscend Business Solutions (https://www.skyscendbs.com)
+#    Copyright (C) 2020 Skyscend Business Solutions Pvt. Ltd. (https://www.skyscendbs.com)
+#
+##########################################################################################
 from odoo import models, fields
 
 
@@ -5,7 +12,7 @@ class AddLandedAm(models.Model):
     _name = "landed.cost.amt"
     _description = "Land Cost AMT"
 
-    landed_cost = fields.Many2one('product.product', 'Product')
+    product_id = fields.Many2one('product.product', 'Product')
     amount = fields.Float('Amount')
     cost_id = fields.Many2one('stock.picking', 'Cost')
     split_method = fields.Selection(selection=[

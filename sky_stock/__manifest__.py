@@ -6,7 +6,7 @@
 #
 ##########################################################################################
 {
-    'name': 'Stock Custom',
+    'name': 'Sky Custom Stock',
     'version': '15.0.0.1',
     'category': 'Stock',
     'license': 'AGPL-3',

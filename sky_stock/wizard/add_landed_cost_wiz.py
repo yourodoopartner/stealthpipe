@@ -1,3 +1,10 @@
+# -*- encoding: utf-8 -*-
+##########################################################################################
+#
+#    Copyright (C) 2019 Skyscend Business Solutions (https://www.skyscendbs.com)
+#    Copyright (C) 2020 Skyscend Business Solutions Pvt. Ltd. (https://www.skyscendbs.com)
+#
+##########################################################################################
 from odoo import models, fields
 
 
@@ -13,7 +20,7 @@ class AddLandedWiz(models.TransientModel):
                 record.write({
                     'landed_cost_ids': [
                         (0, 0, {
-                            'landed_cost': line.landed_cost.id,
+                            'product_id': line.product_id.id,
                             'split_method': line.split_method,
                             'account_id': line.account_id.id,
                             'amount': line.amount
@@ -25,7 +32,7 @@ class AddLanded(models.TransientModel):
     _name = "landed.cost.amount"
     _description = "Leaded Cost Amount"
 
-    landed_cost = fields.Many2one('product.product', 'Product')
+    product_id = fields.Many2one('product.product', 'Product')
     split_method = fields.Selection(selection=[
         ('equal', 'Equal'),
         ('by_quantity', 'By Quantity'),
