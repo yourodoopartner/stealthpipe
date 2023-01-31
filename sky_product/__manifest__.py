@@ -8,16 +8,16 @@
 #
 ##############################################################################
 {
-    'name': 'Product Import',
+    'name': 'Sky Custom Product',
     'version': '15.0.0.1',
     'category': 'Others',
     'license': 'AGPL-3',
     'description': """
-    This module is used to import Product
+    This module is used to Custom Product
     """,
     'author': 'Skyscend Business Solutions',
     'website': 'http://www.skyscendbs.com',
-    'depends': ['base', 'stock'],
+    'depends': ['stock'],
     'data': [
         'views/product_template.xml',
         'views/product_product.xml',
