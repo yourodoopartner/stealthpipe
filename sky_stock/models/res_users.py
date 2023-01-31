@@ -11,4 +11,4 @@ from odoo import api, fields, models, _
 class Users(models.Model):
     _inherit = 'res.users'
 
-    warehouse_ids = fields.Many2many('stock.warehouse', string="Warehouse")
+    warehouse_ids = fields.Many2many('stock.warehouse', string="Warehouses")
