@@ -23,13 +23,13 @@
                 </xpath>
 
                 <xpath expr="//field[@name='move_ids_without_package']/tree" position="inside">
-                    <field name="landed_cost" readonly="1" attrs="{'invisible': [('picking_type_code', '!=', 'incoming')]}"/>
-                    <field name="price_unit" string="Product Cost" attrs="{'invisible': [('picking_type_code', '!=', 'incoming')]}"/>
-                    <field name="total_landed_cost" readonly="1" attrs="{'invisible': [('picking_type_code', '!=', 'incoming')]}"/>
+                    <field name="landed_cost" readonly="1" attrs="{'invisible': [('parent.picking_type_code', '!=', 'incoming')]}"/>
+                    <field name="price_unit" string="Product Cost" attrs="{'invisible': [('parent.picking_type_code', '!=', 'incoming')]}"/>
+                    <field name="total_landed_cost" readonly="1" attrs="{'invisible': [('parent.picking_type_code', '!=', 'incoming')]}"/>
                 </xpath>
                 <xpath expr="//field[@name='move_ids_without_package']/form" position="inside">
-                    <field name="landed_cost" readonly="1" attrs="{'invisible': [('picking_type_code', '!=', 'incoming')]}"/>
-                    <field name="total_landed_cost" readonly="1" attrs="{'invisible': [('picking_type_code', '!=', 'incoming')]}"/>
+                    <field name="landed_cost" readonly="1" attrs="{'invisible': [('parent.picking_type_code', '!=', 'incoming')]}"/>
+                    <field name="total_landed_cost" readonly="1" attrs="{'invisible': [('parent.picking_type_code', '!=', 'incoming')]}"/>
                 </xpath>
                 <xpath expr="//page[@name='operations']" position="inside">
                     <group class="oe_subtotal_footer oe_right">
