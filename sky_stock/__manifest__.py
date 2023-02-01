@@ -15,7 +15,7 @@
     """,
     'author': 'Skyscend Business Solutions Pvt. Ltd.',
     'website': 'http://www.skyscendbs.com',
-    'depends': ['base', 'stock', 'stock_landed_costs'],
+    'depends': ['stock_landed_costs', 'sale'],
     'data': [
         'data/stock_sequence.xml',
         'security/ir.model.access.csv',

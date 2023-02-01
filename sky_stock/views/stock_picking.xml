@@ -22,6 +22,22 @@
                     <attribute name="context">{'landed_cost': True}</attribute>
                 </xpath>
 
+                <xpath expr="//field[@name='move_ids_without_package']/tree" position="inside">
+                    <field name="landed_cost" readonly="1" attrs="{'invisible': [('picking_type_code', '!=', 'incoming')]}"/>
+                    <field name="price_unit" string="Product Cost" attrs="{'invisible': [('picking_type_code', '!=', 'incoming')]}"/>
+                    <field name="total_landed_cost" readonly="1" attrs="{'invisible': [('picking_type_code', '!=', 'incoming')]}"/>
+                </xpath>
+                <xpath expr="//field[@name='move_ids_without_package']/form" position="inside">
+                    <field name="landed_cost" readonly="1" attrs="{'invisible': [('picking_type_code', '!=', 'incoming')]}"/>
+                    <field name="total_landed_cost" readonly="1" attrs="{'invisible': [('picking_type_code', '!=', 'incoming')]}"/>
+                </xpath>
+                <xpath expr="//page[@name='operations']" position="inside">
+                    <group class="oe_subtotal_footer oe_right">
+                        <button colspan="2" name="compute_landed_cost_amount" string="Compute" type="object"
+                                class="oe_right btn-secondary"/>
+                    </group>
+                </xpath>
+
                 <xpath expr="/form/header" position="inside">
                     <button name="%(action_landed_cost_wiz)d"
                             type="action"
@@ -29,9 +45,10 @@
                             attrs="{'invisible': [('picking_type_code', '!=', 'incoming')]}"/>
                 </xpath>
                 <xpath expr="//page[@name='note']" position="after">
-                    <page string="Landed Cost" name="landed_cost" attrs="{'invisible': [('picking_type_code', '!=', 'incoming')]}">
+                    <page string="Landed Cost" name="landed_cost"
+                          attrs="{'invisible': [('picking_type_code', '!=', 'incoming')]}">
                         <field name="landed_cost_ids" nolabel="1">
-                            <tree edit="false" create="false">
+                            <tree create="false" editable="bottom">
                                 <field name="product_id" domain="[('landed_cost_ok', '=', True)]"/>
                                 <field name="account_id" options="{'no_create': True}"/>
                                 <field name="split_method"/>
@@ -40,11 +57,10 @@
                             <form>
                                 <sheet>
                                     <group>
-                                        <field name="product_id" domain="[('landed_cost_ok', '=', True)]"
-                                               readonly="1"/>
-                                        <field name="account_id" options="{'no_create': True}" readonly="1"/>
-                                        <field name="split_method" readonly="1"/>
-                                        <field name="amount" readonly="1"/>
+                                        <field name="product_id" domain="[('landed_cost_ok', '=', True)]"/>
+                                        <field name="account_id" options="{'no_create': True}"/>
+                                        <field name="split_method"/>
+                                        <field name="amount"/>
                                     </group>
                                 </sheet>
                             </form>

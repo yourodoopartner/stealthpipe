@@ -21,31 +21,31 @@
         </template>
 
         <template id="external_layout_standard">
-            <div t-attf-class="header o_company_#{company.id}_layout container" t-att-style="report_header_style">
-                    <div class="row" style="margin-top:10px;">
+            <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
+                    <div class="row">
                         <div class="col-3">
                             <t t-if="company.logo">
                                 <center>
                                     <img t-if="company.logo" t-att-src="image_data_uri(company.logo)"
-                                         style="height: 100px; width: 100px;" alt="Logo"/>
+                                         style="height: 120px; width: 120px;" alt="Logo"/>
                                 </center>
                             </t>
                         </div>
                         <div class="col-6">
                             <center>
-                                <h4>
+                                <h3 style="margin-bottom:0px;">
                                     <strong>Bon de livraison / Bill of lading</strong>
-                                </h4>
-                                <h5>
+                                </h3>
+                                <h6 style="margin-top:0px;margin-bottom:0px;">
                                     <strong>Stealth Pipe and Steel Inc.</strong>
-                                </h5>
-                                <h5>
+                                </h6>
+                                <h6 style="margin-top:0px;">
                                     <strong>TEL:
                                         <t t-esc="company.phone"/>
                                         / FAX:
                                         <t t-esc="company.phone"/>
                                     </strong>
-                                </h5>
+                                </h6>
                             </center>
                         </div>
                         <div class="col-3">
@@ -55,10 +55,8 @@
                 </div>
 
             <div t-attf-class="article o_report_layout_standard o_company_#{company.id}_layout {{  'o_layout_background' if company.layout_background in ['Geometric', 'Custom']  else  '' }}" t-attf-style="background-image: url({{ 'data:image/png;base64,%s' % company.layout_background_image.decode('utf-8') if company.layout_background_image and company.layout_background == 'Custom' else '/base/static/img/bg_background_template.jpg' if company.layout_background == 'Geometric' else ''}});" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
-                <div class="pt-5">
                     <!-- This div ensures that the address is not cropped by the header. -->
                     <t t-call="web.address_layout"/>
-                </div>
                 <t t-out="0"/>
             </div>
         </template>
@@ -67,33 +65,33 @@
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
                     <t t-call="sky_stock.custom_external_layout">
-                        <div class="page">
+                        <div class="page container-fluid" style="margin:0px; padding:0px; font-size: 14px;">
                             <table style="width:100%; margin:0px; padding:0px;">
                                 <tr style="margin:0px; padding:0px;">
-                                    <table style="width:100%; height: 100px; border-collapse: collapse; border: 2px solid; margin:0px; padding:0px;"
+                                    <table style="width:100%; height:50px; border-collapse: collapse; margin:0px; padding:0px;"
                                            class="border border-dark">
-                                        <tr style="width:100%; border: 2px solid; margin:0px; padding:0px;">
-                                            <th style="width:35%; vertical-align:middle; text-align: center; border-right:2px solid;  border-left:2px solid;" class="text-center">
-                                                <span>Nom du Transporteur / Name of Carrier</span>
+                                        <tr style="width:100%; margin:0px; border-top:2px solid; padding:0px;">
+                                            <th style="width:35%; vertical-align:middle; text-align: center; border-bottom:1px solid; border-right:2px solid;  border-left:2px solid;" class="text-center">
+                                                <span style="margin:0px; padding:0px">Nom du Transporteur / Name of Carrier</span>
                                             </th>
-                                            <th style="width:28%; text-align: center; border-right:2px solid;  border-left:2px solid; vertical-align:middle;"
+                                            <th style="width:28%; text-align: center; border-right:2px solid;  border-left:2px solid; border-bottom:1px solid; vertical-align:middle;"
                                                 class="text-center">
                                                 <span>Point D'origines / Point of Origin:</span>
                                             </th>
-                                            <th style="width:37%; text-align: center; border-right:2px solid;  border-left:2px solid; vertical-align:middle;"
+                                            <th style="width:37%; text-align: center; border-right:2px solid;  border-left:2px solid; border-bottom:1px solid; vertical-align:middle;"
                                                 class="text-center">
                                                 <span>Date d'Expédition / Shipping Date:</span>
                                             </th>
                                         </tr>
-                                        <tr style="width:100%; border: 2px solid;">
-                                            <td style="vertical-align:middle; width:35%; text-align: center; border-right:2px solid;  border-left:2px solid;" class="text-center">
+                                        <tr style="width:100%; border-top:1px solid;">
+                                            <td style="vertical-align:middle; width:35%; text-align: center; border-right:2px solid; border-bottom:1px solid; border-left:2px solid;" class="text-center">
                                                 <span t-field="o.partner_id.name"/>
                                             </td>
-                                            <td style="vertical-align:middle; width:28%; text-align: center; border-right:2px solid;  border-left:2px solid;"
+                                            <td style="vertical-align:middle; width:28%; text-align: center; border-right:2px solid; border-bottom:1px solid; border-left:2px solid;"
                                                 class="text-center">
                                                 <span t-field="o.company_id.name"/>
                                             </td>
-                                            <td style="vertical-align:middle; width:37%; text-align: center; border-right:2px solid;  border-left:2px solid;"
+                                            <td style="vertical-align:middle; width:37%; text-align: center; border-right:2px solid; border-bottom:1px solid; border-left:2px solid;"
                                                 class="text-center">
                                                 <span t-esc="o.scheduled_date.strftime('%b')"/>&#160;&#160;<span t-esc="o.scheduled_date.strftime('%d')"/>/<span t-esc="o.scheduled_date.strftime('%y')"/>
                                             </td>
@@ -101,150 +99,166 @@
                                     </table>
                                 </tr>
                                 <tr style="width:100%;">
-                                    <table style="width:100%; height: 100px; border-collapse: collapse;"
+                                    <table style="width:100%; height: 50px; border-collapse: collapse;"
                                            class="border border-dark">
                                         <tr style="width:100%;">
-                                            <td style="width:37%; text-align: center; border-right:2px solid;  border-left:2px solid; vertical-align:middle;" class="text-center">
-                                                <span>Receveur - Adresse de livraison
+                                            <td style="width:42%; text-align: center;  border-right:2px solid;border-bottom:2px solid; border-left:2px solid; vertical-align:middle;" class="text-center">
+                                                <span><strong>Receveur - Adresse de livraison
                                                     <br/>
-                                                    Consignee - Delivery address
+                                                    Consignee - Delivery address</strong>
                                                 </span>
                                             </td>
-                                            <td style="width:33%; text-align: center; border-right:2px solid;  border-left:2px solid; vertical-align:middle;"
+                                            <td style="width:30%; text-align: center; border-right:2px solid; border-bottom:1px solid;border-left:2px solid; vertical-align:middle;"
                                                 class="text-center">
-                                                <span>Expéditeur / Shipper:</span>
+                                                <span><strong>Expéditeur / Shipper:</strong></span>
                                             </td>
-                                            <td style="width:15%; text-align: center; border-right:2px solid;  border-left:2px solid; vertical-align:middle;"
+                                            <td style="width:14%; text-align: center; border-right:2px solid; border-bottom:1px solid; border-left:2px solid; vertical-align:middle;"
                                                 class="text-center">
-                                                <span># Bon Commande<br/>P.O. #:</span>
+                                                <span><strong># Bon Commande<br/>P.O. #:</strong></span>
                                             </td>
-                                            <td style="width:15%; text-align: center; border-right:2px solid;  border-left:2px solid; vertical-align:middle;"
+                                            <td style="width:14%; text-align: center; border-right:2px solid; border-bottom:1px solid; border-left:2px solid; vertical-align:middle;"
                                                 class="text-center">
-                                                <span>BOL #</span>
+                                                <span><strong>BOL #</strong></span>
                                             </td>
                                         </tr>
-                                        <tr style="width:100%; border: 2px solid;">
-                                            <td style="width:37%; text-align: center; border-right:2px solid;  border-left:2px solid; vertical-align:middle;" class="text-center">
-                                                <span t-field="o.partner_id.street"/>,
-                                                &#160;<span t-field="o.partner_id.street2"/>,
-                                                &#160;<span t-field="o.partner_id.city"/>,
-                                                &#160;<span t-field="o.partner_id.state_id"/>,
-                                                &#160;<span t-field="o.partner_id.zip"/>,
+                                        <tr style="width:100%;  border-top:1px solid;">
+                                            <td style="width:42%; text-align: center; border-right:2px solid;border-bottom:1px solid;  border-left:2px solid; vertical-align:middle;" class="text-center">
+                                                <span t-field="o.partner_id.street"/>
+                                                &#160;<span t-field="o.partner_id.street2"/>
+                                                &#160;<span t-field="o.partner_id.city"/>
+                                                &#160;<span t-field="o.partner_id.state_id"/>
+                                                &#160;<span t-field="o.partner_id.zip"/>
                                                 &#160;<span t-field="o.partner_id.country_id"/>
                                             </td>
-                                            <td style="width:33%; text-align: center; border: 1px solid; vertical-align:middle;"
+                                            <td style="width:30%; text-align: center; border-top: 1px solid; border: 1px solid;border-bottom: 1px ; vertical-align:middle;"
                                                 class="text-center">
                                                 <span>Stealth Pipe &amp; Steel Inc.</span>
                                             </td>
-                                            <td style="width:15%; text-align: center; border: 1px solid; vertical-align:middle;"
+                                            <td style="width:14%; text-align: center; border: 1px solid; vertical-align:middle;"
                                                 class="text-center">
                                                 <span t-field="o.origin"/>
                                             </td>
-                                            <td style="width:15%; text-align: center; border-right:2px solid;  border-left:2px solid; vertical-align:middle;"
+                                            <td style="width:14%; text-align: center; border-right:2px solid;  border-left:2px solid; vertical-align:middle;"
                                                 class="text-center">
                                                 <span t-field="o.bill_of_lading"/>
                                             </td>
                                         </tr>
-                                        <tr style="width:100%; border: 2px solid;">
-                                            <td style="width:37%; text-align: center; border-right:2px solid;  border-left:2px solid; vertical-align:middle;" rowspan="2"
+                                        <tr style="width:100%;">
+                                            <td style="width:37%; text-align: center; border-right:2px solid;  border-left:2px solid;border-bottom:1px solid; vertical-align:middle;" rowspan="2"
                                                 class="text-center">
                                                 <!--                                            <span>Wolverton For Stealth</span>-->
                                             </td>
-                                            <td style="width:33%; text-align: center; border-right:2px solid; vertical-align:middle;  border-left:2px solid;"
+                                            <td style="width:34%; text-align: center; border-top:1px solid;border-right:2px solid;border-bottom:2px solid; vertical-align:middle;  border-left:2px solid;"
                                                 colspan="2"
                                                 class="text-center">
-                                                <span>Directives de Livraison
+                                                <span><strong>Directives de Livraison
                                                     <br/>
-                                                    Delivery Instructions
+                                                    Delivery Instructions</strong>
                                                 </span>
                                             </td>
-                                            <td style="width:15%; text-align: center; border-right:2px solid; vertical-align:middle; border-left:2px solid;"
+                                            <td style="width:14%; text-align: center; border-right:2px solid;border-top:1px solid;border-bottom:1px solid; vertical-align:middle; border-left:2px solid;"
                                                 class="text-center">
-                                                <span>Poids Total<br/>Total Weight
+                                                <span><strong>Poids Total<br/>Total Weight</strong>
                                                 </span>
                                             </td>
                                         </tr>
                                         <tr style="width:100%; border: 2px solid;">
-                                            <td style="width:33%; height: 4rem; vertical-align:middle; text-align: center; border-right:2px solid;  border-left:2px solid;" colspan="2" class="text-center">
+                                            <td style="width:34%; height: 2rem; vertical-align:middle; text-align: center; border-right:2px solid;  border-left:2px solid;border-top:1px solid;" colspan="2" class="text-center">
                                             </td>
-                                            <td style="width:15%; height: 4rem; vertical-align:middle; text-align: center; border-right:2px solid;  border-left:2px solid;"
+                                            <td style="width:14%; height: 2rem; vertical-align:middle; text-align: center; border-right:2px solid;  border-left:2px solid;border-left:1px solid;"
                                                 class="text-center">
                                             </td>
                                         </tr>
                                     </table>
                                 </tr>
                                 <tr style="width:100%; border: 2px solid;">
-                                    <table style="width:100%; height: 100px; border-collapse: collapse; border: 2px solid;"
+                                    <table style="width:100%; height: 50px; border-collapse: collapse; border: 2px solid;"
                                            class="border border-dark">
                                         <tr style="width:100%; border-top: 0px;">
-                                            <td style="width:17%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;" class="text-center">
+                                            <th style="width:17%; vertical-align:middle; text-align: center; border-bottom:2px solid; border-right:2px solid; border-left:2px solid;" class="text-center">
                                                 <span>Matériel / Material</span>
-                                            </td>
-                                            <td style="width:7%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
+                                            </th>
+                                            <th style="width:7%; vertical-align:middle; text-align: center; border-bottom:2px solid; border-right:2px solid; border-left:2px solid;"
                                                 class="text-center">
                                                 <span>Pcs</span>
-                                            </td>
-                                            <td style="width:11%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
+                                            </th>
+                                            <th style="width:11%; vertical-align:middle; text-align: center; border-bottom:2px solid; border-right:2px solid; border-left:2px solid;"
                                                 class="text-center">
                                                 <span>Pied / Feet</span>
-                                            </td>
-                                            <td style="width:50%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
+                                            </th>
+                                            <th style="width:51%; vertical-align:middle; text-align: center; border-bottom:2px solid; border-right:2px solid; border-left:2px solid;"
                                                 class="text-center">
                                                 <span>Description</span>
-                                            </td>
-                                            <td style="width:15%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
+                                            </th>
+                                            <th style="width:14%; vertical-align:middle; text-align: center; border-bottom:2px solid; border-left:2px solid; border-right:2px solid; border-left:2px solid;"
                                                 class="text-center">
                                                 <span>Poids (Lbs)
                                                     <br/>
                                                     Weight (Lbs)
                                                 </span>
-                                            </td>
+                                            </th>
                                         </tr>
                                         <t t-foreach="o.move_ids_without_package" t-as="line">
-                                        <tr style="width:100%; border: 2px solid;">
+                                        <tr style="width:100%; border-right: 2px solid; border-left: 2px solid;">
                                             <td style="width:17%; vertical-align:middle; text-align: center; border-left:2px solid;"
                                                 class="text-center">
-                                                <span t-field="line.product_id"/>
+                                                <strong><span t-field="line.product_id"/></strong>
                                             </td>
-                                            <td style="width:7%; vertical-align:middle; text-align: center; border: 1px solid;"
+                                            <td style="width:7%; vertical-align:middle; text-align: center; border-left: 1px solid;"
                                                 class="text-center">
-                                                <span t-field="line.product_uom_qty"/>
+                                                <strong><span t-field="line.product_uom_qty"/></strong>
                                             </td>
-                                            <td style="width:11%; vertical-align:middle; text-align: center; border: 1px solid;"
+                                            <td style="width:11%; vertical-align:middle; text-align: center; border-left: 1px solid;"
                                                 class="text-center">
                                                 <span></span>
                                             </td>
-                                            <td style="width:50%; vertical-align:middle; text-align: center; border: 1px solid;"
+                                            <td style="width:51%; vertical-align:middle; text-align: center; border-left: 1px solid;"
                                                 class="text-center">
-                                                <span t-field="line.product_id.name"/>
+                                                <strong><span t-field="line.product_id.name"/></strong>
                                             </td>
-                                            <td style="width:15%; vertical-align:middle; text-align: center; border-right:2px solid;"
+                                            <td style="width:14%; vertical-align:middle; text-align: center; border-left: 1px solid; border-right:2px solid;"
                                                 class="text-center">
                                                 <span>44,455</span>
                                             </td>
                                         </tr>
                                         </t>
+                                        <tr style="width:100%; height: 3rem; ">
+                                            <td style="width:17%; vertical-align:middle; text-align: center; border-left:2px solid;"
+                                                class="text-center">
+                                            </td>
+                                            <td style="width:7%; vertical-align:middle; text-align: center; border-left: 1px solid;"
+                                                class="text-center">
+                                            </td>
+                                            <td style="width:11%; vertical-align:middle; text-align: center; border-left: 1px solid;"
+                                                class="text-center">
+                                            </td>
+                                            <td style="width:51%; vertical-align:middle; text-align: center; border-left: 1px solid;"
+                                                class="text-center">
+                                            </td>
+                                            <td style="width:14%; vertical-align:middle; text-align: center; border-left: 1px solid; border-right:2px solid;"
+                                                class="text-center">
+                                            </td>
+                                        </tr>
                                     </table>
                                 </tr>
                                 <tr style="width:100%; border: 2px solid;">
-                                    <table style="width:100%; height: 100px; border-collapse: collapse; border: 2px solid;"
+                                    <table style="width:100%; height: 50px; border-collapse: collapse; border: 2px solid;"
                                            class="border border-dark">
                                         <tr style="width:100%;">
                                             <td style="width:24%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
                                                 class="text-center">
-                                                <span>Nombre de pièces total<br/>Totals Pieces
-                                                </span>
+                                                <span><strong>Nombre de pièces total<br/>Totals Pieces</strong></span>
                                             </td>
-                                            <td style="width:37%; vertical-align:middle; text-align: center; border-right:2px solid; border-bottom:2px solid; border-left:2px solid;"
+                                            <td style="width:42%; vertical-align:middle; text-align: center; border-right:2px solid; border-bottom:2px solid; border-left:2px solid;"
                                                 rowspan="2"
                                                 class="text-center">
-                                                <span>Transport / Freight</span>
+                                                <h5><strong>Transport / Freight</strong></h5>
                                             </td>
-                                            <td style="width:24%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
+                                            <td style="width:20%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
                                                 class="text-center">
-                                                <span>Pépayé / Prepaid</span>
+                                                <span><strong>Pépayé / Prepaid</strong></span>
                                             </td>
-                                            <td style="width:15%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
+                                            <td style="width:16%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
                                                 class="text-center">
                                                 <!--                                            <span>44,455</span>-->
                                             </td>
@@ -253,60 +267,60 @@
                                             <td style="width:24%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
                                                 class="text-center">
                                             </td>
-                                            <td style="width:24%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
+                                            <td style="width:20%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
                                                 class="text-center">
-                                                <span>Collecte / Collect</span>
+                                                <span><strong>Collecte / Collect</strong></span>
                                             </td>
-                                            <td style="width:15%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
+                                            <td style="width:16%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
                                                 class="text-center">
                                             </td>
                                         </tr>
                                     </table>
                                 </tr>
                                 <tr style="width:100%; border: 2px solid;">
-                                    <table style="width:100%; height: 100px; border-collapse: collapse; border: 2px solid;"
+                                    <table style="width:100%; height: 50px; border-collapse: collapse; border: 2px solid;"
                                            class="border border-dark">
                                         <tr style="width:100%;">
                                             <td style="width:35%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid; border-bottom:2px solid;"
                                                 class="text-center">
-                                                <span>Expéditeur / Shipper</span>
+                                                <span><strong>Expéditeur / Shipper</strong></span>
                                             </td>
-                                            <td style="width:32%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid; border-bottom:2px solid;"
+                                            <td style="width:31%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid; border-bottom:2px solid;"
                                                 class="text-center">
-                                                <span>Transporteur ou Agent<br/>Carrier or Agent
+                                                <span><strong>Transporteur ou Agent<br/>Carrier or Agent</strong>
                                                 </span>
                                             </td>
-                                            <td style="width:33%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid; border-bottom:2px solid;"
+                                            <td style="width:34%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid; border-bottom:2px solid;"
                                                 class="text-center">
-                                                <span>Consignee</span>
+                                                <span><strong>Consignee</strong></span>
                                             </td>
                                         </tr>
                                         <tr style="width:100%;">
-                                            <td style="width:35%; vertical-align:middle; text-align: center; border-top:1px solid; border-right:2px solid; border-left:2px solid;"
+                                            <td style="width:35%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
                                                 class="text-center">
                                                 <span>Stealth Pipe And Steel Inc.</span>
                                             </td>
-                                            <td style="width:32%; vertical-align:middle; text-align: center; border-top:1px solid; border-right:2px solid; border-left:2px solid;"
+                                            <td style="width:31%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
                                                 class="text-center">
                                                 <span t-field="o.partner_id"/>
                                             </td>
-                                            <td style="width:33%; vertical-align:middle; text-align: center; border-top:1px solid; border-right:2px solid; border-left:2px solid;"
+                                            <td style="width:34%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
                                                 class="text-center">
                                                 <span>Wolverton Stealth</span>
                                             </td>
                                         </tr>
                                         <tr style="width:100%;">
-                                            <td style="width:35%; vertical-align:middle; border: 1px solid; height: 4rem; border-bottom:2px solid; border-right:2px solid; border-left:2px solid;">
+                                            <td style="width:35%; vertical-align:middle; border: 1px solid; height: 2rem; border-bottom:2px solid; border-right:2px solid; border-left:2px solid;">
                                                 <span>
                                                     <b>X</b>
                                                 </span>
                                             </td>
-                                            <td style="width:32%; vertical-align:middle; border: 1px solid; height: 4rem; border-bottom:2px solid; border-left:2px solid;">
+                                            <td style="width:31%; vertical-align:middle; border: 1px solid; height: 2rem; border-bottom:2px solid; border-left:2px solid;">
                                                 <span>
                                                     <b>X</b>
                                                 </span>
                                             </td>
-                                            <td style="width:33%; vertical-align:middle; border: 1px solid; height: 4rem; border-bottom:2px solid; border-right:2px solid; border-left:2px solid;">
+                                            <td style="width:34%; vertical-align:middle; border: 1px solid; height: 2rem; border-bottom:2px solid; border-right:2px solid; border-left:2px solid;">
                                                 <span>
                                                     <b>X</b>
                                                 </span>
@@ -315,17 +329,18 @@
                                     </table>
                                 </tr>
                             </table>
+                            <br/>
                             <p style="text-align: center; margin-bottom:0px; padding-bottom:0px;">COMBINATION SHORT FORM OF STRAIGHT BILL OF LADING EXPRESS
                                 SHIPPING CONTRACT, ADOPTED BY RAILFREIGHT AND EXPRESS CARRIERS
                                 SUBJECT TO THE JURISDICTION OF THE CANADIAN TRANSPORT COMMISSION.
                             </p>
                             <div class="container-fluid" style="margin:0px; padding:0px;">
                                 <div class="row" style="margin:0px; padding:0px;">
-                                    <div class="col-6" style="margin:0px; padding:0px;"><span>ISSUED AT SHIPPERS REQUEST</span></div>
+                                    <div class="col-6" style="margin:0px; padding:0px;">&#160;&#160;<span>ISSUED AT SHIPPERS REQUEST</span></div>
                                     <div class="col-6" style="margin:0px; padding:0px; text-align:right;"><span>Received</span></div>
                                 </div>
                             </div>
-                            <p style="text-align: center;">subjects to the rules for the carriage of express and
+                            <p style="text-align: center; font-size: 12px;">subjects to the rules for the carriage of express and
                                 non-carload
                                 freight traffic and tariffs in effect on the date of issue of this original shipping
                                 contract (bill of
@@ -345,7 +360,7 @@
                                 if the same where severally, fully and specifically set forth
                                 herein).
                             </p>
-                            <p style="text-align: center;">1.
+                            <p style="text-align: center; font-size: 12px;">1.
                                 Approved by the Board of Transport Commissioners for Canada by General Order No. T
                                 5, dated
                                 February 1, 1965 set forth in the Canadian Freight
@@ -369,7 +384,7 @@
                                 Carload Freight Traffic and also available at all express and railway agency
                                 stations and
                                 express and freight offices upon request, when said goods are carried
-                                <br/>by a rail carrier and which are agreed to by the shipper and accepted for
+                                by a rail carrier and which are agreed to by the shipper and accepted for
                                 himself and
                                 his assigns.
                             </p>

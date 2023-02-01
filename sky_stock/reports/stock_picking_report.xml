@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
+        <record id="paperformat_bill_of_lading" model="report.paperformat">
+            <field name="name">Bill Of Lading PaperFormate</field>
+            <field name="default" eval="True"/>
+            <field name="format">Letter</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">45</field>
+            <field name="margin_bottom">30</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_spacing">27</field>
+            <field name="dpi">90</field>
+        </record>
+
         <record id="action_report_bill_of_lading" model="ir.actions.report">
             <field name="name">Bill Of Lading</field>
             <field name="model">stock.picking</field>
@@ -10,7 +25,9 @@
             <field name="print_report_name">('BOL - %s' % (object.bill_of_lading))</field>
             <field name="binding_model_id" eval="False"/>
             <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="sky_stock.paperformat_bill_of_lading"/>
         </record>
-
     </data>
+
+
 </odoo>

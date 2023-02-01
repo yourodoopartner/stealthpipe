@@ -7,7 +7,7 @@
             <form>
                 <field name="landed_cost_ids" nolabel="1">
                     <tree editable="bottom">
-                        <field name="product_id" domain="[('landed_cost_ok', '=', True)]"/>
+                        <field name="product_id" domain="[('landed_cost_ok', '=', True)]" context="{'default_landed_cost_ok': True}"/>
                         <field name="account_id" options="{'no_create': True}"/>
                         <field name="split_method"/>
                         <field name="amount"/>
