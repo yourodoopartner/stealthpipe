@@ -11,10 +11,11 @@ from odoo import models, fields, api
 class StockMove(models.Model):
     _inherit = "stock.move"
 
-    landed_cost = fields.Float('Landed Cost')
-    total_landed_cost = fields.Float('Total Cost ', compute='_cal_total_landed_cost')
+    landed_cost = fields.Float('Landed Cost', copy=False)
+    total_landed_cost = fields.Float('Total Cost ', compute='_cal_total_landed_cost', copy=False)
+    product_cost = fields.Float('Product Cost', compute='_cal_product_cost', copy=False)
 
-    @api.depends('landed_cost', 'price_unit')
+    @api.depends('landed_cost', 'product_cost')
     def _cal_total_landed_cost(self):
         """
         This method is used to get the sum of the product unit price and its landed cost.
@@ -23,4 +24,15 @@ class StockMove(models.Model):
         :return:
         """
         for rec in self:
-            rec.total_landed_cost = rec.landed_cost + rec.price_unit
+            rec.total_landed_cost = rec.landed_cost + rec.product_cost
+
+    @api.depends('price_unit', 'product_uom_qty')
+    def _cal_product_cost(self):
+        """
+        This method is used to calculate the product cost.[Depends on product cost and its quantity.]
+        ----------------------------------------------------------------------------------------------
+        @:param self: object pointer
+        :return:
+        """
+        for rec in self:
+            rec.product_cost = rec._get_price_unit() * rec.product_uom_qty

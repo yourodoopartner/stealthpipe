@@ -145,7 +145,7 @@ class Picking(models.Model):
                 'product_id': move.product_id.id,
                 'move_id': move.id,
                 'quantity': move.product_qty,
-                'former_cost': sum(move.stock_valuation_layer_ids.mapped('value')),
+                'former_cost': move.product_cost,
                 'weight': move.product_id.weight * move.product_qty,
                 'volume': move.product_id.volume * move.product_qty
             }

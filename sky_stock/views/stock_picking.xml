@@ -21,23 +21,24 @@
                 <xpath expr="//button[@name='button_validate'][2]" position="attributes">
                     <attribute name="context">{'landed_cost': True}</attribute>
                 </xpath>
-
                 <xpath expr="//field[@name='move_ids_without_package']/tree" position="inside">
-                    <field name="landed_cost" readonly="1" attrs="{'invisible': [('parent.picking_type_code', '!=', 'incoming')]}"/>
-                    <field name="price_unit" string="Product Cost" attrs="{'invisible': [('parent.picking_type_code', '!=', 'incoming')]}"/>
-                    <field name="total_landed_cost" readonly="1" attrs="{'invisible': [('parent.picking_type_code', '!=', 'incoming')]}"/>
-                </xpath>
-                <xpath expr="//field[@name='move_ids_without_package']/form" position="inside">
-                    <field name="landed_cost" readonly="1" attrs="{'invisible': [('parent.picking_type_code', '!=', 'incoming')]}"/>
-                    <field name="total_landed_cost" readonly="1" attrs="{'invisible': [('parent.picking_type_code', '!=', 'incoming')]}"/>
+                    <field name="landed_cost"
+                           attrs="{'column_invisible': [('parent.picking_type_code', '!=', 'incoming')]}"
+                           readonly="1"/>
+                    <field name="product_cost"
+                           attrs="{'column_invisible': [('parent.picking_type_code', '!=', 'incoming')]}"
+                           string="Product Cost"/>
+                    <field name="total_landed_cost"
+                           attrs="{'column_invisible': [('parent.picking_type_code', '!=', 'incoming')]}"
+                           readonly="1"/>
                 </xpath>
                 <xpath expr="//page[@name='operations']" position="inside">
                     <group class="oe_subtotal_footer oe_right">
                         <button colspan="2" name="compute_landed_cost_amount" string="Compute" type="object"
-                                class="oe_right btn-secondary"/>
+                                class="oe_right btn-secondary"
+                                attrs="{'invisible': [('picking_type_code', '!=', 'incoming')]}"/>
                     </group>
                 </xpath>
-
                 <xpath expr="/form/header" position="inside">
                     <button name="%(action_landed_cost_wiz)d"
                             type="action"

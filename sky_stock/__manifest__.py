@@ -22,7 +22,6 @@
         "security/stock_security.xml",
         'wizard/add_landed_cost_wiz_view.xml',
         "views/res_users_view.xml",
-        # "views/stock_location.xml"
         'reports/stock_picking_report.xml',
         'reports/bill_of_lading.xml',
         'views/stock_picking.xml',
