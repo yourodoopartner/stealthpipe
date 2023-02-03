@@ -52,6 +52,14 @@
             <field name="groups" eval="[(4, ref('sky_stock.group_warehouse_access'))]"/>
         </record>
 
+        <!-- Stock Quantity Report Rule-->
+        <record id="user_report_stock_quantity_rule" model="ir.rule">
+            <field name="name">User Stock Quantity Report Rule</field>
+            <field name="model_id" ref="stock.model_report_stock_quantity"/>
+            <field name="domain_force">[('warehouse_id', 'in', user.warehouse_ids.ids)]</field>
+            <field name="groups" eval="[(4, ref('sky_stock.group_warehouse_access'))]"/>
+        </record>
+
         <!-- Inventory Adjustments Rule-->
         <record id="user_inventory_adjustments_rule" model="ir.rule">
             <field name="name">User Inventory Adjustments Rule</field>

@@ -29,8 +29,9 @@
                            attrs="{'column_invisible': [('parent.picking_type_code', '!=', 'incoming')]}"
                            string="Product Cost"/>
                     <field name="total_landed_cost"
-                           attrs="{'column_invisible': [('parent.picking_type_code', '!=', 'incoming')]}"
-                           readonly="1"/>
+                           attrs="{'column_invisible': [('parent.picking_type_code', '!=', 'incoming')]}"/>
+                    <field name="final_cost"
+                           attrs="{'column_invisible': [('parent.picking_type_code', '!=', 'incoming')]}"/>
                 </xpath>
                 <xpath expr="//page[@name='operations']" position="inside">
                     <group class="oe_subtotal_footer oe_right">
