@@ -8,11 +8,11 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='origin']" position="after">
                     <field name="bill_of_lading" readonly="1"
-                           attrs="{'invisible': [('picking_type_code', '!=', 'incoming')]}"/>
+                           attrs="{'invisible': [('picking_type_code', 'not in', ['incoming','outgoing'])]}"/>
                 </xpath>
                 <xpath expr="//form/header" position="inside">
                     <button name="%(action_report_bill_of_lading)d" type="action" string="Bill of Lading"
-                            attrs="{'invisible': [('picking_type_code', '!=', 'incoming')]}"/>
+                            attrs="{'invisible': [('picking_type_code', 'not in', ['incoming','outgoing'])]}"/>
                 </xpath>
 
                 <xpath expr="//button[@name='button_validate'][1]" position="attributes">
