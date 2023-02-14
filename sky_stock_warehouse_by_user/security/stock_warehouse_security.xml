@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--Access to Warehouse Group-->
+        <record id="group_warehouse_access" model="res.groups">
+            <field name="name">Access to Warehouse</field>
+        </record>
+
+        <!-- Operation Type Rule-->
+        <record id="user_operation_type_rule" model="ir.rule">
+            <field name="name">User Operation Type Rule</field>
+            <field name="model_id" ref="stock.model_stock_picking_type"/>
+            <field name="domain_force">[
+                '|',
+                '&amp;',('code','=','outgoing'),('warehouse_id', 'in', user.warehouse_ids.ids),
+                '&amp;',('code', 'in', ['outgoing', 'incoming', 'internal']),('warehouse_id', 'not in', user.warehouse_ids.ids)]
+            </field>
+            <field name="groups" eval="[(4, ref('sky_stock_warehouse_by_user.group_warehouse_access'))]"/>
+        </record>
+
+
+        <!-- Transfer Rule-->
+        <record id="user_transfer_rule" model="ir.rule">
+            <field name="name">User Transfer Rule</field>
+            <field name="model_id" ref="stock.model_stock_picking"/>
+            <field name="domain_force">[
+                    '|',
+                    '&amp;',('picking_type_code', '=', 'outgoing'),('picking_type_id.warehouse_id', 'in',
+                    user.warehouse_ids.ids),
+                    '&amp;',('picking_type_code', 'in', ('outgoing', 'incoming','internal')),
+                    ('picking_type_id.warehouse_id', 'not in', user.warehouse_ids.ids)
+                    ]
+            </field>
+            <field name="groups" eval="[(4, ref('sky_stock_warehouse_by_user.group_warehouse_access'))]"/>
+        </record>
+
+         <!-- Stock Rule-->
+        <record id="user_stock_rule" model="ir.rule">
+            <field name="name">User Stock Rule</field>
+            <field name="model_id" ref="stock.model_stock_rule"/>
+            <field name="domain_force">[
+                    '|',
+                    '&amp;',('picking_type_id.code', '=', 'outgoing'),('warehouse_id', 'in',
+                    user.warehouse_ids.ids),
+                    '&amp;',('picking_type_id.code', 'in', ('outgoing', 'incoming','internal')),
+                    ('warehouse_id', 'not in', user.warehouse_ids.ids)
+                    ]
+            </field>
+            <field name="groups" eval="[(4, ref('sky_stock_warehouse_by_user.group_warehouse_access'))]"/>
+        </record>
+        
+    </data>
+</odoo>
