@@ -26,7 +26,7 @@ class Picking(models.Model):
         """
         res = super(Picking, self).create(vals_lst)
         for picking in res:
-            if picking.picking_type_code == "incoming":
+            if picking.picking_type_code in ["incoming", "outgoing"]:
                 picking.bill_of_lading = self.env['ir.sequence'].next_by_code('bill.lading.seq',
                                                                               sequence_date=False) or _('New')
         return res
