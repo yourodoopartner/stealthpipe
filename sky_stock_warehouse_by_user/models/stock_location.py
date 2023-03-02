@@ -12,3 +12,4 @@ class Location(models.Model):
     _inherit = 'stock.location'
 
     warehouse_id = fields.Many2one('stock.warehouse', compute='_compute_warehouse_id', store=True)
+    is_reserved_location = fields.Boolean('Is Reserved Location')

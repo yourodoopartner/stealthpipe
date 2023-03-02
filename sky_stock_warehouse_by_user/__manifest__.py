@@ -19,6 +19,8 @@
     'data': [
         'security/stock_warehouse_security.xml',
         'views/res_users_view.xml',
+        'views/stock_location_form_view.xml',
+
     ],
     'installable': True,
     'auto-install': True

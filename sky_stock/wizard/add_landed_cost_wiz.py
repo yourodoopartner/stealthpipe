@@ -5,7 +5,7 @@
 #    Copyright (C) 2020 Skyscend Business Solutions Pvt. Ltd. (https://www.skyscendbs.com)
 #
 ##########################################################################################
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class AddLandedWiz(models.TransientModel):
@@ -43,3 +43,9 @@ class AddLanded(models.TransientModel):
     account_id = fields.Many2one('account.account', 'Account', domain=[('deprecated', '=', False)])
     amount = fields.Float('Amount')
     cost_id = fields.Many2one('landed.cost.wiz', 'Cost')
+
+    @api.onchange('product_id')
+    def onchange_product_id(self):
+        self.split_method = self.product_id.product_tmpl_id.split_method_landed_cost or self.split_method or 'equal'
+        accounts_data = self.product_id.product_tmpl_id.get_product_accounts()
+        self.account_id = accounts_data['stock_input']
