@@ -210,7 +210,7 @@
                                             </td>
                                             <td style="width:11%; vertical-align:middle; text-align: center; border-left: 1px solid;"
                                                 class="text-center">
-                                                <span></span>
+                                                <span t-field="line.lengths"/>
                                             </td>
                                             <td style="width:51%; vertical-align:middle; text-align: center; border-left: 1px solid;"
                                                 class="text-center">
@@ -302,7 +302,7 @@
                                             </td>
                                             <td style="width:31%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
                                                 class="text-center">
-                                                <span t-field="o.partner_id"/>
+                                                <span t-if="o.carrier_id" t-field="o.carrier_id"/>
                                             </td>
                                             <td style="width:34%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
                                                 class="text-center">

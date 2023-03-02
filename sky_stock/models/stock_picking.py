@@ -41,7 +41,8 @@ class Picking(models.Model):
         result = super(Picking, self)._action_done()
         for picking in self.env['stock.picking'].browse(self._context.get('button_validate_picking_ids')):
             oder_line_rec = []
-            if picking.picking_type_code == 'incoming' and self._context and self._context.get('landed_cost'):
+            if picking.picking_type_code == 'incoming' and self._context and self._context.get(
+                    'landed_cost') and not self._context.get('cancel_backorder'):
                 for line in picking.landed_cost_ids:
                     oder_line_rec.append(
                         (0, 0, {
@@ -57,6 +58,8 @@ class Picking(models.Model):
                     'picking_ids': [(4, picking.id)],
                     'cost_lines': oder_line_rec
                 })
+                self.compute_landed_cost_amount()
+                land_cost_id.button_validate()
         return result
 
     def compute_landed_cost_amount(self):
@@ -154,3 +157,18 @@ class Picking(models.Model):
         if not lines:
             raise UserError(_("Landed costs can only be applied for products with FIFO or average costing method."))
         return lines
+
+    def action_landed_cost(self):
+        """
+        This method is used to show the Landed Cost of that specific transfer.
+        ----------------------------------------------------------------------
+        @param self: object pointer
+        """
+        return {
+            'name': 'Landed Cost',
+            'type': 'ir.actions.act_window',
+            'res_model': 'stock.landed.cost',
+            'view_mode': 'tree,form',
+            'view_type': 'form',
+            'domain': [('picking_ids', '=', self.id)]
+        }

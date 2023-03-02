@@ -15,7 +15,7 @@
     """,
     'author': 'Skyscend Business Solutions Pvt. Ltd.',
     'website': 'http://www.skyscendbs.com',
-    'depends': ['stock_landed_costs', 'sale', 'sky_stock_warehouse_by_user'],
+    'depends': ['stock_landed_costs', 'sale', 'sky_stock_warehouse_by_user', 'delivery'],
     'data': [
         'data/stock_sequence.xml',
         'security/ir.model.access.csv',
@@ -23,6 +23,7 @@
         'reports/stock_picking_report.xml',
         'reports/bill_of_lading.xml',
         'views/stock_picking.xml',
+        'views/sale_order_line_view.xml',
     ],
     'application': True,
     'installable': True,

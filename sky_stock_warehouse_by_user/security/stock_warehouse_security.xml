@@ -48,6 +48,21 @@
             </field>
             <field name="groups" eval="[(4, ref('sky_stock_warehouse_by_user.group_warehouse_access'))]"/>
         </record>
+
+        <!-- Reserved Location user Group  -->
+
+        <record id="group_reserved_location_access" model="res.groups">
+            <field name="name">No Access to Reserved Location</field>
+        </record>
+
+        <!-- display Not Reserved location -->
+        <record id="user_reserve_location_rule" model="ir.rule">
+            <field name="name">User Reserved Location Rule</field>
+            <field name="model_id" ref="stock.model_stock_location"/>
+            <field name="domain_force">[('is_reserved_location', '=',  False)]
+            </field>
+            <field name="groups" eval="[(4, ref('sky_stock_warehouse_by_user.group_reserved_location_access'))]"/>
+        </record>
         
     </data>
 </odoo>
