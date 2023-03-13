@@ -1,0 +1,24 @@
+<odoo>
+    <record id="paperformat_invoice_report" model="report.paperformat">
+        <field name="name">Invoice Report Paperformat</field>
+        <field name="default" eval="True" />
+        <field name="format">Letter</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">22</field>
+        <field name="margin_bottom">30</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_spacing">27</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="account.account_invoices" model="ir.actions.report">
+        <field name="paperformat_id" ref="sky_invoice_report.paperformat_invoice_report" />
+    </record>
+
+    <record id="account.account_invoices_without_payment" model="ir.actions.report">
+        <field name="paperformat_id" ref="sky_invoice_report.paperformat_invoice_report" />
+    </record>
+</odoo>
