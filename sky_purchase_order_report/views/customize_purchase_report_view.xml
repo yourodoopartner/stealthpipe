@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <template id="customize_purchase_order_report" inherit_id="purchase.report_purchaseorder_document">
+            <xpath expr="//t" position="replace">
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="o">
+                        <t t-call="web.basic_layout">
+                            <style>.table-bordered
+                                th, .table-bordered td{ border: 1px solid #000 !important; }
+                                td.data-order { border: 0px #000 !important; }
+                            </style>
+                            <div class="page">
+                                <div class="row">
+                                    <div class="col-3" float="left">
+                                        <t t-if="o.company_id.logo">
+                                            <img t-if="o.company_id.logo"
+                                                 t-att-src="image_data_uri(o.company_id.logo)"
+                                                 style="height: 200x; width: 200px;" alt="Logo"/>
+                                        </t>
+                                    </div>
+                                    <div class="col-9" float="right">
+                                        <div align="right">
+                                            <strong style="font-size: 17px; font-family: Arial;">Purchase Order</strong>
+                                        </div>
+                                        <table class="table-bordered mb-5" style="width: 53%; border: 1px solid black;"
+                                               align="right">
+                                            <tr class="table-secondary" align="center" valign="center">
+                                                <th style="width: 50%; font-family: Arial; font-size: 13px;">DATE</th>
+                                                <th style="width: 50%; font-family: Arial; font-size: 13px;">ORDER #
+                                                </th>
+                                            </tr>
+                                            <tr align="center" style="font-family: Arial; font-size: 14px;">
+                                                <td>
+                                                    <t t-esc="o.date_order.date()"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="o.name"/>
+                                                </td>
+                                            </tr>
+                                            <tr class="table-secondary" align="center" style="width: 100px">
+                                                <td colspan="2">
+                                                    <strong style="font-family: Arial; font-size: 13px;">TERMS</strong>
+                                                </td>
+                                            </tr>
+                                            <tr align="center" style="font-family: Arial; font-size: 14px;">
+                                                <td colspan="2">
+                                                    <t t-esc="o.payment_term_id.name"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6"
+                                         style="font-family: sans-serif; font-size: 14px; padding-left: 20px;">
+                                        <t t-esc="o.company_id.partner_id.name"/>
+                                        <br/>
+                                        <t t-esc="o.company_id.street"/>
+                                        <t t-esc="o.company_id.street2"/>
+                                        <br/>
+                                        <t t-esc="o.company_id.city"/>
+                                        <t t-esc="o.company_id.state_id.name"/>
+                                        <t t-esc="o.company_id.zip"/>
+                                        <br/>
+                                        <t t-esc="o.company_id.country_id.name"/>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row mb-4">
+                                    <div class="col-6" style="font-family: Arial; font-size: 13px;" width="100%">
+                                        <table class="table-bordered" style="width:82%; float:left">
+                                            <tr class="table-secondary" align="center">
+                                                <th>
+                                                    VENDOR
+                                                </th>
+                                            </tr>
+                                            <tr style="height:100px;">
+                                                <td style="padding-left: 10px;">
+                                                    <t t-esc="o.partner_id.name"/>
+                                                    <br/>
+                                                    <t t-esc="o.partner_id.street"/>
+                                                    <br/>
+                                                    <t t-esc="o.partner_id.street2"/>
+                                                    <t t-esc="o.partner_id.city"/>
+                                                    <br/>
+                                                    <t t-esc="o.partner_id.state_id.name"/>
+                                                    <t t-esc="o.partner_id.zip"/>
+                                                    <br/>
+                                                    <t t-esc="o.partner_id.country_id.name"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-6" style="font-family: Arial; font-size: 13px;">
+                                        <table class="table-bordered" style="width:81%; float:right">
+                                            <tr class="table-secondary" align="center">
+                                                <th>
+                                                    SHIP TO
+                                                </th>
+                                            </tr>
+                                            <tr style="height:100px;">
+                                                <td>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <table class="table-bordered mb-5"
+                                       style="width: 100%; font-family: Arial; font-size: 13px; margin-top: 35px">
+                                    <thead>
+                                        <tr class="table-secondary" align="center">
+                                            <th name="th_description" width="10%">
+                                                <strong>Item</strong>
+                                            </th>
+                                            <th name="th_description">
+                                                <strong>Description</strong>
+                                            </th>
+                                            <th name="th_qty" class="text-center" width="10%">
+                                                <strong>Qty</strong>
+                                            </th>
+                                            <th name="th_rate" class="text-center" width="10%">
+                                                <strong>Rate</strong>
+                                            </th>
+                                            <th name="th_amt" class="text-center">
+                                                <strong>Amt</strong>
+                                            </th>
+                                            <th name="th_recd" class="text-center" width="10%">
+                                                <strong>Rec'd</strong>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-set="current_subtotal" t-value="0"/>
+                                        <t t-foreach="o.order_line" t-as="line">
+                                            <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal"
+                                               groups="account.group_show_line_subtotals_tax_excluded"/>
+                                            <t t-set="current_subtotal" t-value="current_subtotal + line.price_total"
+                                               groups="account.group_show_line_subtotals_tax_included"/>
+                                            <tr style="padding-bottom: 20px;">
+                                                <td id="product"
+                                                    style="padding-left: 10px; padding-bottom: 20px; width:20%">
+                                                    <span t-field="line.product_id"/>
+                                                </td>
+                                                <td style="padding-left: 10px; padding-bottom: 20px;">
+                                                    <span t-field="line.name"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-field="line.product_qty"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-options='{"widget": "monetary", "display_currency": o.currency_id}'
+                                                          t-field="line.price_unit"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-field="line.price_subtotal"
+                                                          t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span>0</span>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                        <tr style="border: 1px solid white !important">
+                                            <td class="data-order" rowspan="7" colspan="3">
+                                            </td>
+                                            <td style="padding-left: 10px; padding-bottom: 10px; padding-top: 10px; text-align: center;">
+                                                TOTAL
+                                            </td>
+                                            <td style="padding-left: 10px; padding-bottom: 10px; padding-top: 10px; text-align: center;">
+                                                <span t-esc="current_subtotal"
+                                                      t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div float="right" style="font-family: Arial; font-size: 13px;">
+                                    <span>Ship Via:</span>
+                                    <br/>
+                                    <br/>
+                                    <span>Expected Date:</span>
+                                </div>
+                                <p style="page-break-inside: avoid;"/>
+                            </div>
+                        </t>
+                    </t>
+                </t>
+            </xpath>
+        </template>
+
+        <record id="paperformat_purchase_order" model="report.paperformat">
+            <field name="name">Purchase order PaperFormat</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">20.00</field>
+            <field name="margin_bottom">30</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">15</field>
+            <field name="dpi">80</field>
+        </record>
+
+        <record id="purchase.action_report_purchase_order" model="ir.actions.report">
+            <field name="paperformat_id" ref="paperformat_purchase_order"/>
+        </record>
+
+    </data>
+</odoo>
