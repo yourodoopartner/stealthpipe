@@ -16,20 +16,22 @@ class ProductTemplate(models.Model):
     length = fields.Float(string='Length')
 
     def update_sales_description(self):
-        self.description_sale = ''
-        if self.diameter != 0.0:
-            self.description_sale += 'Diameter: ' + str(self.diameter) + ', '
+        for product in self:
+            product.description_sale = ''
+            if product.diameter != 0.0:
+                product.description_sale += 'Diameter: ' + str(product.diameter) + ', '
 
-        if self.wall_thickness != 0.0:
-            self.description_sale += 'Wall Thickness: ' + str(self.wall_thickness) + ', '
+            if product.wall_thickness != 0.0:
+                product.description_sale += 'Wall Thickness: ' + str(product.wall_thickness) + ', '
 
-        if self.length != 0.0:
-            self.description_sale += 'Length: ' + str(self.length)
+            if product.length != 0.0:
+                product.description_sale += 'Length: ' + str(product.length)
 
     @api.model_create_multi
     def create(self, vals):
         res = super(ProductTemplate, self).create(vals)
-        res.update_sales_description()
+        for product in res:
+            product.update_sales_description()
         return res
 
     def write(self, vals):
