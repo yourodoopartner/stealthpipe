@@ -6,6 +6,8 @@
 #
 ##########################################################################################
 from odoo import fields, models, api
+import csv
+from odoo.modules.module import get_module_path
 
 
 class ProductTemplate(models.Model):
@@ -39,3 +41,18 @@ class ProductTemplate(models.Model):
         if 'name' in vals or 'diameter' in vals or 'wall_thickness' in vals or 'length' in vals:
             self.update_sales_description()
         return res
+
+    def import_product_weight(self):
+        product_data_dict = {}
+        for product in self.search([]):
+            product_data_dict.update({product.name:product.id})
+        file_path = get_module_path('sky_product')
+        with open(file_path+'/static/Product Template.csv', 'r') as csvfile:
+            csvreader = csv.reader(csvfile)
+            header = next(csvreader)
+            for row in csvreader:
+                if row[1] in product_data_dict:
+                    query = """
+                                UPDATE product_product SET weight = %s WHERE product_tmpl_id = %s
+                            """
+                    self._cr.execute(query, (tuple([row[5]]), tuple([product_data_dict.get(row[1])])))
