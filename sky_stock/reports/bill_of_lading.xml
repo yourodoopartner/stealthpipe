@@ -85,7 +85,7 @@
                                         </tr>
                                         <tr style="width:100%; border-top:1px solid; border-bottom:1px solid;">
                                             <td style="vertical-align:middle; width:35%; text-align: center; border-right:2px solid; border-bottom:1px solid; border-left:2px solid;" class="text-center">
-                                                <span t-field="o.partner_id.name"/>
+                                                <span t-if="o.carrier_id" t-field="o.carrier_id"/>
                                             </td>
                                             <td style="vertical-align:middle; width:28%; text-align: center; border-right:2px solid; border-bottom:1px solid; border-left:2px solid;"
                                                 class="text-center">
@@ -98,6 +98,10 @@
                                         </tr>
                                     </table>
                                 </tr>
+                                <t t-set="total_weight" t-value="0"/>
+                                <t t-set="weight" t-value="0"/>
+                                <t t-foreach="o.move_ids_without_package" t-as="line">
+                                    <t t-set="total_weight" t-value="total_weight + (line.product_uom_qty*line.product_id.weight)"/>
                                 <tr style="width:100%;">
                                     <table style="width:100%; height: 50px; border-collapse: collapse;"
                                            class="border border-dark">
@@ -167,10 +171,12 @@
                                             </td>
                                             <td style="width:14%; height: 2rem; vertical-align:middle; text-align: center; border-right:2px solid;  border-left:2px solid;"
                                                 class="text-center">
+                                                <t t-if="total_weight"><span t-esc="'%.2f'% total_weight"/></t>
                                             </td>
                                         </tr>
                                     </table>
                                 </tr>
+                                </t>
                                 <tr style="width:100%; border: 2px solid;">
                                     <table style="width:100%; height: 50px; border-collapse: collapse; border: 2px solid;"
                                            class="border border-dark">
@@ -198,7 +204,10 @@
                                                 </span>
                                             </th>
                                         </tr>
+
+                                        <t t-set="totals_pieces" t-value="0"/>
                                         <t t-foreach="o.move_ids_without_package" t-as="line">
+                                            <t t-set="totals_pieces" t-value="totals_pieces + line.product_uom_qty"/>
                                         <tr style="width:100%; border-right: 2px solid; border-left: 2px solid;">
                                             <td style="width:17%; vertical-align:middle; text-align: center; border-left:2px solid;"
                                                 class="text-center">
@@ -206,19 +215,20 @@
                                             </td>
                                             <td style="width:7%; vertical-align:middle; text-align: center; border-left: 1px solid;"
                                                 class="text-center">
-                                                <strong><span t-field="line.product_uom_qty"/></strong>
+                                                <strong><span t-field="line.lengths"/></strong>
                                             </td>
                                             <td style="width:11%; vertical-align:middle; text-align: center; border-left: 1px solid;"
                                                 class="text-center">
-                                                <span t-field="line.lengths"/>
+                                                <span t-field="line.product_uom_qty"/>
                                             </td>
                                             <td style="width:51%; vertical-align:middle; text-align: center; border-left: 1px solid;"
                                                 class="text-center">
                                                 <strong><span t-field="line.product_id"/></strong>
                                             </td>
+                                            <t t-set="weight" t-value="(line.product_uom_qty*line.product_id.weight)"/>
                                             <td style="width:14%; vertical-align:middle; text-align: center; border-left: 1px solid; border-right:2px solid;"
                                                 class="text-center">
-                                                <span>44,455</span>
+                                                <t t-if="weight"><span t-esc="'%.2f'% weight"/></t>
                                             </td>
                                         </tr>
                                         </t>
@@ -252,20 +262,26 @@
                                             <td style="width:42%; vertical-align:middle; text-align: center; border-right:2px solid; border-bottom:2px solid; border-left:2px solid;"
                                                 rowspan="2"
                                                 class="text-center">
-                                                <h5><strong>Transport / Freight</strong></h5>
+                                                <h5><strong>Transport / Freight </strong></h5>
                                             </td>
                                             <td style="width:20%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
                                                 class="text-center">
-                                                <span><strong>Pépayé / Prepaid</strong></span>
+                                                <span><strong>Prépayé / Prepaid</strong></span>
                                             </td>
                                             <td style="width:16%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
                                                 class="text-center">
-                                                <!--                                            <span>44,455</span>-->
+                                                <t t-if="o.x_studio_freight_terms == 'Prepaid'">
+                                                    <input type="checkbox" checked="True"/>
+                                                </t>
+                                                <t t-else="">
+                                                    <input type="checkbox"/>
+                                                </t>
                                             </td>
                                         </tr>
                                         <tr style="width:100%; border: 2px solid;">
                                             <td style="width:24%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
                                                 class="text-center">
+                                                <t t-if="totals_pieces"><span t-esc="'%.2f'% totals_pieces"/></t>
                                             </td>
                                             <td style="width:20%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
                                                 class="text-center">
@@ -273,6 +289,12 @@
                                             </td>
                                             <td style="width:16%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
                                                 class="text-center">
+                                                <t t-if="o.x_studio_freight_terms == 'Collect'">
+                                                    <input type="checkbox" checked="True"/>
+                                                </t>
+                                                <t t-else="">
+                                                    <input type="checkbox"/>
+                                                </t>
                                             </td>
                                         </tr>
                                     </table>
@@ -306,7 +328,7 @@
                                             </td>
                                             <td style="width:34%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
                                                 class="text-center">
-                                                <span>Wolverton Stealth</span>
+                                                <span t-if="o.x_studio_consignee" t-field="o.x_studio_consignee"/>
                                             </td>
                                         </tr>
                                         <tr style="width:100%;">

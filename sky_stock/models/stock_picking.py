@@ -15,6 +15,8 @@ class Picking(models.Model):
 
     bill_of_lading = fields.Char('Bill Of Lading')
     landed_cost_ids = fields.One2many('landed.cost.amt', 'cost_id', string='Landed Cost')
+    x_studio_consignee = fields.Char('Consignee')
+    x_studio_freight_terms = fields.Selection([('Prepaid','Prepaid'),('Collect','Collect')], string="Freight Terms")
 
     @api.model_create_multi
     def create(self, vals_lst):
