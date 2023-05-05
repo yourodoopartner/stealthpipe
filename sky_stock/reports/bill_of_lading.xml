@@ -223,7 +223,16 @@
                                             </td>
                                             <td style="width:51%; vertical-align:middle; text-align: center; border-left: 1px solid;"
                                                 class="text-center">
-                                                <strong><span t-field="line.description_picking"/></strong>
+                                                <t t-if="line.purchase_line_id">
+                                                    <strong>
+                                                        <span t-field="line.purchase_line_id.name"/>
+                                                    </strong>
+                                                </t>
+                                                <t t-else="">
+                                                    <strong>
+                                                        <span t-field="line.description_picking"/>
+                                                    </strong>
+                                                </t>
                                             </td>
                                             <t t-set="weight" t-value="(line.product_uom_qty*line.product_id.weight)"/>
                                             <td style="width:14%; vertical-align:middle; text-align: center; border-left: 1px solid; border-right:2px solid;"
