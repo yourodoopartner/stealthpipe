@@ -1,0 +1,606 @@
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+    <script defer="defer" type="text/javascript" src="/web/assets/12083783-6005cfa/1/web.assets_common_minimal.min.js" data-asset-bundle="web.assets_common_minimal" data-asset-version="6005cfa"></script>
+    <script defer="defer" type="text/javascript" src="/web/assets/12083790-435fc74/1/web.assets_frontend_minimal.min.js" data-asset-bundle="web.assets_frontend_minimal" data-asset-version="435fc74"></script>
+    <script defer="defer" type="text/javascript" data-src="/web/assets/12312463-1dfafd8/1/web.assets_common_lazy.min.js" data-asset-bundle="web.assets_common_lazy" data-asset-version="1dfafd8"></script>
+    <script defer="defer" type="text/javascript" data-src="/web/assets/12312464-582a432/1/web.assets_frontend_lazy.min.js" data-asset-bundle="web.assets_frontend_lazy" data-asset-version="582a432"></script>
+  <link rel="canonical" href="https://apps.odoo.com/apps/modules/14.0/indian_gst_calculation/"/>
+  
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="mobile-web-app-capable" content="yes"/>
+  <meta name="generator" content="Odoo"/>
+  <meta name="google-site-verification" content="pgjyH0qvN69B0m_HrTKV6h8TVnbRXp5etEHo19unPy4"/>
+          <meta property="og:type" content="website"/>
+          <meta property="og:title" content="indian_gst_calculation | Odoo Apps Store"/>
+          <meta property="og:site_name" content="Odoo S.A."/>
+          <meta property="og:url" content="https://apps.odoo.com/apps/modules/14.0/indian_gst_calculation/"/>
+          <meta property="og:image" content="https://apps.odoo.com/web/image/loempia.module/93265/icon_image?unique=2d6a0f3"/>
+      <meta name="twitter:card" content="summary_large_image"/>
+      <meta name="twitter:title" content="indian_gst_calculation | Odoo Apps Store"/>
+      <meta name="twitter:image" content="https://apps.odoo.com/web/image/loempia.module/93265/icon_image/300x300?unique=2d6a0f3"/>
+  <link rel="canonical" href="https://apps.odoo.com/apps/modules/14.0/indian_gst_calculation/"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin=""/>
+  <title> GST Invoice (India) | Odoo Apps Store </title>
+  <link type="image/x-icon" rel="shortcut icon" href="//apps.odoocdn.com/web/image/website/1/favicon?unique=dfe951a"/>
+  <link rel="preload" href="//apps.odoocdn.com/web/static/lib/fontawesome/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font" crossorigin=""/>
+  <link type="text/css" rel="stylesheet" href="/web/assets/12312450-e61f5aa/1/web.assets_common.min.css" data-asset-bundle="web.assets_common" data-asset-version="e61f5aa"/>
+  <script src="./carousel-slider.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link type="text/css" rel="stylesheet" href="/web/assets/12312458-ab69b11/1/web.assets_frontend.min.css" data-asset-bundle="web.assets_frontend" data-asset-version="ab69b11"/>
+  <script id="web.layout.odooscript" type="text/javascript">
+      var odoo = {
+          csrf_token: "380ce7588a1b1e2ee15ca7cd7918c087ae993dcao1700294991",
+          debug: "",
+      };
+  </script>
+  <script type="text/javascript">
+  odoo.__session_info__ = {"is_admin": false, "is_system": false, "is_website_user": true, "user_id": false, "is_frontend": true, "profile_session": null, "profile_collectors": null, "profile_params": null, "show_effect": "True", "translationURL": "/website/translations", "cache_hashes": {"translations": "9abe6ca5009dcf42c2231f19055828a776612cc3"}, "geoip_country_code": "IN"};
+  if (!/(^|;\s)tz=/.test(document.cookie)) {
+      const userTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      document.cookie = `tz=${userTZ}; path=/`;
+  }
+  </script>
+  <script src="https://www.recaptcha.net/recaptcha/api.js?render=6Lcul_cUAAAAAIm051Is0wb8-Tq-AiOaK_ePfzvo"></script>
+  <script>
+      if (window.grecaptcha) {
+          grecaptcha.ready(function() {
+              grecaptcha.execute('6Lcul_cUAAAAAIm051Is0wb8-Tq-AiOaK_ePfzvo', {action: 'apps_download'});
+          });
+      }
+  </script>
+  <script defer="defer" type="text/javascript" src="/web/assets/12083783-6005cfa/1/web.assets_common_minimal.min.js" data-asset-bundle="web.assets_common_minimal" data-asset-version="6005cfa"></script>
+  <script defer="defer" type="text/javascript" src="/web/assets/12083790-435fc74/1/web.assets_frontend_minimal.min.js" data-asset-bundle="web.assets_frontend_minimal" data-asset-version="435fc74"></script>
+  <script defer="defer" type="text/javascript" data-src="https://apps.odoo.com/web/assets/12312463-1dfafd8/1/web.assets_common_lazy.min.js" data-asset-bundle="web.assets_common_lazy" data-asset-version="1dfafd8"></script>
+  <script defer="defer" type="text/javascript" data-src="https://apps.odoo.com/web/assets/12312464-582a432/1/web.assets_frontend_lazy.min.js" data-asset-bundle="web.assets_frontend_lazy" data-asset-version="582a432"></script>
+  <link rel="canonical" href="https://apps.odoo.com/apps/modules/14.0/indian_gst_calculation/"/>
+  <noscript>
+  <style>
+      /* Prevent animated elements hiding */
+      .o_animate_in_children > * {
+          opacity: 1!important;
+          -webkit-transform: scale(1)!important;
+          -ms-transform: scale(1)!important;
+          transform: scale(1)!important;
+      }
+  </style>
+  </noscript>
+  
+  </head>
+  <section back>
+    </div>
+    <div class="container pt-5 pb-5 text-center" style="font-family: Montserrat; padding: 10px;">
+      <div class=" text-center" style="font-family: Montserrat; text-align:center; color: #0f1e40; font-family: Montserrat; font-weight: 600; text-align: center;
+      text-transform: uppercase; opacity: 1; font-size: 20px;">
+      <div class="CONNECTOR_img">
+        <img src="qb_strip.png" alt="shopify2" style="width: 100%; padding-bottom: 20px;">
+      </div>
+      <h2>ODOO QUICKBOOKS ONLINE CONNECTOR </h2>
+      <div class="cust-1" style=" padding-top: 8px;">
+        <p class="h6" style="color: #0f1e40; font-family: Montserrat; font-weight: 400; text-align: center; text-transform: uppercase; opacity: 1;
+        font-size: 20px;">By Techspawn Solutions Pvt Ltd</p>
+        <!-- <p class="h6 text-white">Manage your Quickbooks in real time with bi-directional data exchange between Quickbooks
+          and Odoo.
+        </p> -->
+      </div>
+    </div>
+      <div class="cust_2" style="line-height: 42px; padding-top: 2%; font-size: 18px;">
+        <p style="font-size: 15px; line-height: 24px; max-width: 915px; margin:auto;">
+            Integration completely automates your accounting process from sales order creation to invoicing. It allows users
+            to view orders, products, customers, vendors, employees, payments, expenses, taxes, inventory levels, shipments
+            and much more directly from Odoo. With Odoo quickbook integration, you get access to real-time data without
+            having to manually enter information. All transactions are automatically synchronized across multiple channels.
+      </div>
+      <!-- <div class="row p-2">
+        <div class="col-md-4">
+          <img  src="w-01.png" alt="shopify" style="width: 192px; padding-top: 20px; float: right;" >
+        </div>
+        <div class="col-md-4">
+          <img src="w-02.png" alt="shopify1" style="width: 192px; padding-top: 20px;">
+        </div>
+        <div class="col-md-4">
+          <img src="w-03.png" alt="shopify2" style="width: 192px; padding-top: 20px; float: left;">
+        </div>
+      </div> -->
+      <!-- <div class="cust-3">
+        <p class="h4 pt-4 text-center font-size:20px">REQUEST ODOO SHOPIFY DEMO</p>
+      </div> -->
+      <!-- <div class="cust_btn">
+         <button type="button" class=" btn1 btn-lg" style="background-color: white; border: solid; -->
+        <!-- border-color:hsl(205, 31%, 21%);border-radius: 30px;"><a href="http://techspawn.com/support">Know More...</a></button> -->
+        <!-- <span href="http://techspawn.com/support" target="_blank"><input type="button" -->
+            <!-- class="btn btn-outline-primary btn-lg text-center" value="Know More"></span> -->
+        <!-- <button onclick="window.location.href='https://w3docs.com';" class="button" style="border:2px; padding:1%; background:#c5e1d4; color: #091E42; border:solid 2px; border-color: black; border-radius: 30px; font-size: 18px;" >Know More...</button> -->
+      <!-- </div>
+        <div class=" m-auto " style="border:2px solid #007bff; border-radius:30px; padding:10px; width: 10%; color: #007bff; font-size: 20px;"><span>
+  
+          <a href="mailto:support@techspawn.com">Know More</a></span></div>     --> 
+    </div>
+    </div>
+  </section>
+  
+  <section class="oe_container pb-5">
+    <div class="mt64 mb64">
+      <h2 class="cust_head shadow-lg mb-5" style="background-color: #f0f4f7; padding: 1%; border-radius: 15px; color: #091E42; font-family: Montserrat;
+      text-align: center; text-transform: uppercase;">HIGHLIGHTS
+      </h2>
+      <div class="row m-4">
+        <div class="col-md-6 col-sm-12">
+          <div class="container row" style="box-shadow: -40px 40px 160px 0 rgb(0 0 0 / 8%), -8px 8px 15px 0 rgb(120 120 120 / 4%), 3px 3px 30px 0 rgb(0 0 0 / 4%) !important;
+         border-radius:10px; padding:10px 0px; align-items: center; justify-content: center;">
+            <div class="col-md-3" style="float:left">
+              <img class="img img-responsive" src="icon_Synchronization .jpg" style="width: 148px;">
+            </div>
+            <div class="col-md-9" style="padding-left:0; float:left; width:70%">
+              <h3 class="mt16 mb0" style="font-family:Roboto; font-weight:500; font-size:22px">Synchronization On Single Click</h3>
+              <p class=" mt8" style="font-family:Roboto"> Import, Export and Synchronize between Odoo and QuickBooks. </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <div class="container row"style="box-shadow: -40px 40px 160px 0 rgb(0 0 0 / 8%), -8px 8px 15px 0 rgb(120 120 120 / 4%), 3px 3px 30px 0 rgb(0 0 0 / 4%) !important;
+          border-radius:10px; padding:10px 0px; align-items: center; justify-content: center;">
+            <div class="col-md-3" style="float:left">
+              <img class="img img-responsive" src="icon_Import Data.jpg" style="width: 148px;">
+            </div>
+            <div class="col-md-9" style="padding-left:0; float:left; width:70%">
+              <h3 class="mt16 mb0" style="font-family:Roboto; font-weight:500; font-size:22px">Import Data From QuickBooks Online To Odoo</h3>
+              <p class=" mt8" style="font-family:Roboto"> Import quickbooks product,chart of account,
+                customer,vendor,saleorder,purchaseorder,
+                payment,employee,department,bill,journals,invoice. </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12 mt-4">
+          <div class="container row"style="box-shadow: -40px 40px 160px 0 rgb(0 0 0 / 8%), -8px 8px 15px 0 rgb(120 120 120 / 4%), 3px 3px 30px 0 rgb(0 0 0 / 4%) !important;
+          border-radius:10px; padding:10px 0px; align-items: center; justify-content: center;">
+            <div class="col-md-3" style="float:left">
+              <img class="img img-responsive" src="icon_Export Data.jpg" style="width: 148px;">
+            </div>
+            <div class="col-md-9" style="padding-left:0; float:left; width:70%">
+              <h3 class="mt16 mb0" style="font-family:Roboto; font-weight:500; font-size:22px">Export Data From Odoo To QuickBooks Online</h3>
+              <p class=" mt8" style="font-family:Roboto"> Export quickbooks product,chart of account,
+                customer,vendor,saleorder,purchaseorder,
+                payment,employee,department,bill,journals,invoice.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12 mt-4">
+          <div class="container row"style="box-shadow: -40px 40px 160px 0 rgb(0 0 0 / 8%), -8px 8px 15px 0 rgb(120 120 120 / 4%), 3px 3px 30px 0 rgb(0 0 0 / 4%) !important;
+          border-radius:10px; padding:10px 0px; align-items: center; justify-content: center;">
+            <div class="col-md-3" style="float:left">
+              <img class="img img-responsive" src="icon_Custom Date.jpg" style="width: 148px;">
+            </div>
+            <div class="col-md-9" style="padding-left:0; float:left; width:70%">
+              <h3 class="mt16 mb0" style="font-family:Roboto; font-weight:500; font-size:22px">Import of Data for selected Date slots</h3>
+              <p class=" mt8" style="font-family:Roboto"> We can easily import data for a selected period of date slot </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12 mt-4">
+          <div class="container row"style="box-shadow: -40px 40px 160px 0 rgb(0 0 0 / 8%), -8px 8px 15px 0 rgb(120 120 120 / 4%), 3px 3px 30px 0 rgb(0 0 0 / 4%) !important;
+          border-radius:10px; padding:10px 0px; align-items: center; justify-content: center;">
+            <div class="col-md-3" style="float:left">
+              <img class="img img-responsive" src="icon_invoices bills.jpg" style="width: 148px;">
+            </div>
+            <div class="col-md-9" style="padding-left:0; float:left; width:70%">
+              <h3 class="mt16 mb0" style="font-family:Roboto; font-weight:500; font-size:22px">
+                Automatic Linking Of Saleorder</h3>
+              <p class=" mt8" style="font-family:Roboto"> Automatically syncing of saleorders to odoo</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12 mt-4">
+          <div class="container row"style="box-shadow: -40px 40px 160px 0 rgb(0 0 0 / 8%), -8px 8px 15px 0 rgb(120 120 120 / 4%), 3px 3px 30px 0 rgb(0 0 0 / 4%) !important;
+          border-radius:10px; padding:10px 0px; align-items: center; justify-content: center;">
+            <div class="col-md-3" style="float:left">
+              <img class="img img-responsive" src="icon_Synced Dataa.jpg" style="width: 148px;">
+            </div>
+            <div class="col-md-9" style="padding-left:0; float:left; width:70%">
+              <h3 class="mt16 mb0" style="font-family:Roboto; font-weight:500; font-size:22px">Get Status Of Synced Data</h3>
+              <p class=" mt8" style="font-family:Roboto">Status of the data syncing is available. </p>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-md-6 col-sm-12 mt-4">
+          <div class="container row"style="box-shadow: -40px 40px 160px 0 rgb(0 0 0 / 8%), -8px 8px 15px 0 rgb(120 120 120 / 4%), 3px 3px 30px 0 rgb(0 0 0 / 4%) !important;
+          border-radius:10px; padding:10px 0px; align-items: center; justify-content: center;">
+            <div class="col-md-3" style="float:left">
+              <img class="img img-responsive" src="odoo-index-7.png" style="width: 148px;">
+            </div>
+            <div class="col-md-9" style="padding-left:0; float:left; width:70%">
+              <h3 class="mt16 mb0" style="font-family:Roboto; font-weight:500; font-size:22px">Set Automatic Jobs</h3>
+              <p class=" mt8" style="font-family:Roboto"> Set automatic jobs to perform various vital Shopify Odoo Operations. </p>
+            </div>
+          </div>
+        </div> -->
+        <!-- <div class="col-md-6 col-sm-12 mt-4">
+          <div class="container row"style="box-shadow: -40px 40px 160px 0 rgb(0 0 0 / 8%), -8px 8px 15px 0 rgb(120 120 120 / 4%), 3px 3px 30px 0 rgb(0 0 0 / 4%) !important;
+          border-radius:10px; padding:10px 0px; align-items: center; justify-content: center;">
+            <div class="col-md-3" style="float:left">
+              <img class="img img-responsive" src="//apps.odoocdn.com/apps/assets/16.0/shopify_ept/screens/Shopify-Payout.png?dc02789">
+            </div>
+            <div class="col-md-9" style="padding-left:0; float:left; width:70%">
+              <h3 class="mt16 mb0" style="font-family:Roboto; font-weight:500; font-size:22px">Manage Shopify Payouts</h3>
+              <p class=" mt8" style="font-family:Roboto"> Settle and Reconcile all your transactions in Odoo that are made through Shopify Payouts. </p>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </section>
+  
+  <!-- <section class="cust_title">
+    <div class="cust-col">
+      <h2 class="cust_head shadow-lg mb-5" style="background-color: #f0f4f7; padding: 1%; border-radius: 15px; color: #091E42; font-family: Montserrat;
+      text-align: center; margin: 62px 32px; text-transform: uppercase;">HIGHLIGHTS
+      </h2>
+      <div class="container mb-5 ;">
+        <div class="row  mb-3">
+          <div class="col-md-6 ">
+            <div class="row rounded mr-2 shadow-lg mb-3 ">
+              <div class="col-md-4">
+                <img src="bulllet-13.png" class="custom_image" alt="bulllet-13.png" width="160px" height="150px">
+              </div>
+              <div class="col-md-8 cust_text" style="font-family: Montserrat; color: #091E42; font-size: 30px; margin-top: 10%;">
+                <h4>Synchronization On Single Click</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 ">
+            <div class="row rounded mr-2 shadow-lg mb-3">
+              <div class="col-md-4">
+                <img src="bulllet-15.png" class="custom_image" alt="bulllet-14.png" width="160px" height="150px">
+              </div>
+              <div class="col-md-8 cust_text" style="font-family:Montserrat; color: #091E42; font-size: 30px; margin-top: 40px;">
+                <h4>Import Data From Shopify Online To Odoo</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="row rounded mr-2 shadow-lg mb-3">
+              <div class="col-md-4">
+                <img src="bulllet-14.png" class="custom_image" alt="bulllet-15.png" width="160px" height="150px">
+              </div>
+              <div class="col-md-8 cust_text" style="font-family: Montserrat; color: #091E42; font-size: 30px; margin-top: 40px;">
+                <h4>Export Data From Odoo To Shopify Online</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 ">
+            <div class="row rounded mr-2 shadow-lg mb-3">
+              <div class="col-md-4">
+                <img src="bulllet-17.png" class="custom_image" alt="bulllet-16.png" width="160px" height="150px">
+              </div>
+              <div class="col-md-8 cust_text" style="font-family: Montserrat; color: #091E42; font-size: 30px;
+                      margin-top: 40px;">
+                <h4>Import Single data based on ID</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+  
+  <section class="cust_title">
+    <div class="cust-col">
+      <h2 class="cust_head shadow-lg mb-3" style="background-color: #f0f4f7; padding: 1%; border-radius: 15px; color: #091E42; font-family: Montserrat;
+      text-align: center; margin: 0px 32px; text-transform: uppercase;">FEATURES
+      </h2>
+      <div class="container" style="line-height: 32px;">
+        <ul class="mr-5 ml-5">
+<!--          <li style="font-family: Roboto; color: #091E42; list-style-type: initial; font-size: 18px;">Import,Export and real time sync from odoo to quickbook </li>-->
+          <!-- <li style="font-family: Roboto; color: #091E42; list-style-type: initial; font-size: 18px;">Import of shipped and unshipped orders: The process imports orders, customers, products, prices, taxes, discounts, shipping, order tags, duties, and payments from Shopify. Allow import of orders in the currency the customer uses to pay for their order.</li>
+          <li style="font-family: Roboto; color: #091E42; list-style-type: initial; font-size: 18px;">Mapping of products:This feature helps you map Odoo product SKUs with Shopify product SKUs if you have different product SKUs / internal references / standard product codes on different sales channels.</li> -->
+        </ul>
+      </div>
+      <div class="main" style="display:inline; padding: 0px; margin: 0px;">
+        <div class="container">
+          <h4 class="cust_sub_head shadow-lg p-3" style="background-color:#c5e1d4; font-family:Montserrat; text-align:center; margin:25px auto; text-transform:uppercase; padding:2%; border-radius:9px; color:#091E42">
+            QuickBooks to Odoo - Import Operations
+          </h4>
+          <div class="main1">
+            <div class="row">
+            <div class="col-md-6">
+              <!-- <div class="container" > -->
+              <ul class="mr-5 ml-5" style="list-style-type:none ;">
+                <div class="list" style="line-height: 5%;"> </div>
+                <li style="list-style-type:initial ;">Import Journal Entry</li>
+                <li style="list-style-type:initial ;">Synchronization on Single Click</li>
+                <li style="list-style-type:initial ;">Import Customers into Odoo</li>
+                <li style="list-style-type:initial ;">Import Account Tax Code and Rate into Odoo</li>
+                <li style="list-style-type:initial ;">Import Vendors into Odoo</li>
+                <li style="list-style-type:initial ;">Import Payment Terms into Odoo</li>
+                <li style="list-style-type:initial ;">Import Employee Department into Odoo</li>
+              </ul>
+              <!-- </div> -->
+            </div>
+            <div class="col-md-6">
+              <div class="container mb-3">
+                <ul class="mr-5 ml-5">
+                  <li style="list-style-type:initial ;">Import Payment Methods into Odoo</li>
+                  <li style="list-style-type:initial ;">Import Sales Orders into Odoo</li>
+                  <li style="list-style-type:initial ;">Import Accounts into Odoo</li>
+                  <li style="list-style-type:initial ;">Import Purchase Orders into Odoo</li>
+                  <li style="list-style-type:initial ;">Import Invoices into Odoo</li>
+                  <li style="list-style-type:initial ;">Import Products into Odoo</li>
+                  <li style="list-style-type:initial ;">Import Data based on Custom Date</li>
+                </ul>
+              </div>
+            </div>
+              <!-- <div class="col-md-6">
+                <div class="container mb-3">
+                  <ul class="mr-5 ml-5">
+                    <li style="list-style-type:initial ;">Import Customers into Odoo</li>
+                    <li style="list-style-type:initial ;">Import Product tax and sale order tax into Odoo</li>
+                  </ul>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+        <div class="container mb-3 font-family:Montserrat;">
+          <h4 class="cust_sub_head shadow-lg mb-5 p-3"
+            style="background-color:#c5e1d4; font-family:Montserrat; text-align:center; margin:25px auto; text-transform:uppercase; padding:2%; border-radius:9px; color:#091E42">
+            Odoo to QuickBooks - Export Operations</h4>
+          <div class="main2" style="display: flex;">
+            <div class="row">
+              <div class="col-md-6">
+              <div class="container">
+                <ul class="mr-5 ml-5">
+                  <li style="list-style-type:initial ;">Get Status of Synced Data</li>
+                  <li style="list-style-type:initial ;">Export Customers to QuickBooks Online</li>
+                  <li style="list-style-type:initial ;"> Export Account Tax Code and Rate to QuickBooks Online</li>
+                  <li style="list-style-type:initial ;">Export Vendors to QuickBooks Online</li>
+                  <li style="list-style-type:initial ;">Export Payment Terms to QuickBooks Online</li>
+                  <li style="list-style-type:initial ;">Export Employees to QuickBooks Online</li>
+                  <li style="list-style-type:initial ;">Export Department to QuickBooks Online</li>
+                  <li style="list-style-type:initial ;">Export Payment Methods into QuickBooks Online</li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="container mb-3">
+                <ul class="mr-5 ml-5">
+                  <li style="list-style-type:initial ;">Export Sale Orders to QuickBooks Online</li>
+                  <li style="list-style-type:initial ;">Export Accounts into QuickBooks Online</li>
+                  <li style="list-style-type:initial ;">Export Purchase Orders into QuickBooks Online</li>
+                  <li style="list-style-type:initial ;">Export Invoices into QuickBooks Online</li>
+                  <li style="list-style-type:initial ;">Export Product to QuickBooks Online</li>
+                  <li style="list-style-type:initial ;">Export Timesheets into QuickBooks Online</li>
+                  <li style="list-style-type:initial ;">Export Receipts into Odoo</li>
+                  <li style="list-style-type:initial ;">Export Sale Order and Invoice with discount</li>
+                </ul>
+              </div>
+            </div>
+              <!-- <div class="col-md-6">
+                <div class="container mb-3">
+                  <ul class="mr-5 ml-5">
+                    <li style="list-style-type:initial ;">Export Customers from odoo</li>
+                    <li style="list-style-type:initial ;">Export Bulk images of product from Odoo</li>
+                  </ul>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="cust_title">
+    <div class="container-fluid">
+      <img src="2807708-02.jpg" alt="sync" style="width:80%; margin-right: 10%; margin-left: 10%; margin-top: 2%;" class="center ">
+      <h5 class="cust_text text-center mt-2"
+        style="font-family: Montserrat; color: #091E42; font-size: 18px; margin-top: 40px;">"Order importing [ import from Quickbook to odoo ] and exporting [export from to odoo to Quickbook] by a single click"</h5>
+  
+  
+      
+      <img src="2807708-01.png" alt="Snow" style="width:80%; margin-right: 10%; margin-left: 10%;margin-top: 2%;" class="center ">
+      <h5 class="cust_text text-center mb-5 mt-2"
+        style="font-family: Montserrat; color: #091E42; font-size: 18px; margin-top: 40px;">"Products importing [ import from Quickbook to odoo ] and exporting [export from to odoo to Quickbook] by a single click"</h5>
+    </div>
+  </section>
+  
+  <section class="cust_title">
+    <h2 class="cust_head shadow-lg mb-5 mt-5" style="background-color: #f0f4f7; color: #091E42; 
+                font-family:'Montserrat'; text-align: center; margin: 25px 32px; text-transform: uppercase; padding: 1%;
+                border-radius: 15px;">USER GUIDE </h2>
+    <div class="container p-2 text-center">
+      <p class="h5 pt-3" style="line-height: 35px;">For Quickbooks Documentation Please refer the below link<br>
+        <a href="https://techspawn.com/docs/quickbooks-odoo-connector/" style="color: blue;">https://techspawn.com/docs/quickbooks-odoo-connector/</a>
+      </p>
+    </div>
+    <div class="container p-2 text-center">
+      <p class="h5 pt-3" style="color: rgb(0, 0, 0); font-size: 18px;">
+        NOTE- Techspawn will provide free support for all the products up to 3 Months only.
+      </p>
+    </div>
+  </section>
+  
+  <section class="cust_title mb-5">
+    <h2 class="cust_head shadow-lg mb-5 mt-5" style="background-color: #f0f4f7; color: #091E42; 
+                font-family:'Montserrat'; text-align: center; margin: 25px 32px; text-transform: uppercase; padding: 1%;
+                border-radius: 15px;">FAQ'S</h2>
+     <div class="container">
+      <div class="row">
+          <div class="col-md-6">
+              <p><strong>Does the app allow two-way Synchronization?</strong></p>
+              <p class="px-3">Yes. You can import and export both from Quickbooks Online to Odoo and vice versa. If you want only one-way
+                syncronization, you can reach us at support@techspawn.com for further customization.</p>
+          </div> 
+          <div class="col-md-6">
+              <p><strong>Can we customize the module?</strong></p>
+              <p class="px-3">Yes. We can customize the module according to your requirement. If you feel like you need some customization,
+                please contact us at support@techspawn.com. Our team will be happy to help you with the customization.</p>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-6">
+              <p><strong> How can we configure this module in odoo?</strong></p>
+              <p class="px-3">We provide a very detailed documentation with the module, which will help you set up your Quickbooks Odoo
+                Connector. If you face any issues, feel free to contact us at support@techspawn.com</p>
+          </div> 
+          <div class="col-md-6">
+              <p><strong>Does your module support Odoo Community & Enterprise edition ?</strong></p>
+              <p class="px-3">Our module is compatible with both Odoo Community & Enterprise edition. Configuration is same for both edition.</p>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-6">
+              <p><strong>Do we get installation support on purchase of this app?</strong></p>
+              <p class="px-3">Yes. We provide complete support for app installation and its post installation.
+              </p>
+          </div> 
+          <div class="col-md-6">
+              <p><strong>Do I receive upgrades if I purchase the app?</strong></p>
+              <p class="px-3">Yes. You do receive the updated version of the app you have purchased.</p>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-6">
+              <p><strong>Does this module support on odoo.sh?</strong></p>
+              <p class="px-3">Yes. Our module is supported on odoo.sh</p>
+          </div> 
+          <div class="col-md-6">
+              <!-- <p><strong>Does your module support Odoo Community & Enterprise edition ?</strong></p>
+              <p class="p-3">Our module is compatible with both Odoo Community & Enterprise edition. Configuration is same for both edition.</p> -->
+          </div>
+      </div>
+    </div>
+    <!-- <div id="accordion">
+      <div class="card" onclick="href='#collapseOne';" style="cursor:pointer;">
+        <div class="card-header">
+          <a class="collapsed btn" style="color:#212529 ;" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <i class="fa fa-angle-down" style="font-size:24px"></i> Does your module support Odoo Community & Enterprise
+            edition ?
+          </a>
+        </div>
+        <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
+          <div class="card-body">
+            Our module is compatible with both Odoo Community & Enterprise edition. Configuration is same for both
+            edition.
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <a class="collapsed btn" style="color:#212529 ;" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fa fa-angle-down" style="font-size:24px"></i> Do we get installation support on purchase of this
+            app?
+          </a>
+        </div>
+        <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
+          <div class="card-body">
+            Yes. We provide complete support for app installation and its post installation.
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <a class="collapsed btn" style="color:#212529 ;" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+            <i class="fa fa-angle-down" style="font-size:24px"></i> Do I receive upgrades if I purchase the app?
+          </a>
+        </div>
+        <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
+          <div class="card-body">
+            Yes. You do receive the updated version of the app you have purchased.
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <a class="collapsed btn" style="color:#212529 ;" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+            <i class="fa fa-angle-down" style="font-size:24px"></i> Does the app allow two-way Synchronization?
+          </a>
+        </div>
+        <div id="collapseFour" class="collapse" data-bs-parent="#accordion">
+          <div class="card-body">
+            Yes. You can import and export both from Quickbooks Online to Odoo and vice versa. If you want only one-way
+            syncronization, you can reach us at support@techspawn.com for further customization.
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <a class="collapsed btn" style="color:#212529 ;" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+            <i class="fa fa-angle-down" style="font-size:24px"></i> Can we customize the module?
+          </a>
+        </div>
+        <div id="collapseFive" class="collapse" data-bs-parent="#accordion">
+          <div class="card-body">
+            Yes. We can customize the module according to your requirement. If you feel like you need some customization,
+            please contact us at support@techspawn.com. Our team will be happy to help you with the customization.
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <a class="collapsed btn" style="color:#212529 ;" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+            <i class="fa fa-angle-down" style="font-size:24px"></i> Does this module support on odoo.sh?
+          </a>
+        </div>
+        <div id="collapseSix" class="collapse" data-bs-parent="#accordion">
+          <div class="card-body">
+            Yes. Our module is supported on odoo.sh
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <a class="collapsed btn" style="color:#212529 ;" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
+            <i class="fa fa-angle-down" style="font-size:24px"></i> How can we configure this module in odoo?
+          </a>
+        </div>
+        <div id="collapseSeven" class="collapse" data-bs-parent="#accordion">
+          <div class="card-body">
+            We provide a very detailed documentation with the module, which will help you set up your Quickbooks Odoo
+            Connector. If you face any issues, feel free to contact us at support@techspawn.com
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <div class="carsection">
+      <h2 class="cust_head shadow-lg mb-3" style="background-color: #f0f4f7; padding: 1%; border-radius: 15px; color: #091E42; font-family: Montserrat;
+      text-align: center; margin: 40px 32px; text-transform: uppercase;">RELATED PRODUCTS
+      </h2>
+    </div>
+  <!-- Our Service Section Start -->
+  
+  <section class=" our_service_section">
+    <div class="container ">
+        <div class="mySlides">
+          <div class="row align-items-center">
+            <div class="col-md-4 text-center justify-content-end">
+              <a href="https://apps.odoo.com/apps/modules/16.0/odoo_office_tech/"><img src="v16ofic365.gif" style=" width: 320px; border-radius: 10px;"></a>
+              <a href="https://apps.odoo.com/apps/modules/16.0/odoo_office_tech/"><h2 style="font-size: 18px;padding-top: 10px;">All in One Office 365 Connector</h2></a>
+            </div>
+            <div class="col-md-4 text-center justify-content-center">
+              <a href="https://apps.odoo.com/apps/modules/16.0/odoo_woo_connect/"><img src="woo16.gif" style="width: 320px; border-radius: 10px;"></a>
+              <a href="https://apps.odoo.com/apps/modules/16.0/odoo_woo_connect/"><h2 style="font-size: 18px;padding-top: 10px;">Odoo Woocommerce Connect</h2></a>
+            </div>
+            <div class="col-md-4 text-center justify-content-center">
+              <a href="https://apps.odoo.com/apps/modules/16.0/odoo_shopify_connector/"><img src="shopify16.gif" style="width: 320px; border-radius: 10px;"></a>
+              <a href="https://apps.odoo.com/apps/modules/16.0/odoo_shopify_connector/"><h2 style="font-size: 18px;padding-top: 10px;">Odoo Shopify Connector</h2></a>
+            </div>
+          </div>
+        </div>
+    </div>
+  </section>
+  
+  
