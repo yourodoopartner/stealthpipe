@@ -213,6 +213,7 @@ class ResCompany(models.Model):
                 property_payment_term_id_1 = False
                 if str(property_payment_term_id) != 'nan':
                     property_payment_term_id_1 = payment_term_obj.create({'name': property_payment_term_id}).id
+                    payment_term_dict.update({property_payment_term_id: property_payment_term_id_1})
 
             if title in title_dict:
                 title_1 = title_dict.get(title)
