@@ -15,7 +15,7 @@
     """,
     'author': 'Skyscend Business Solutions Pvt. Ltd.',
     'website': 'http://www.skyscendbs.com',
-    'depends': ['sale'],
+    'depends': ['sale','sale_margin'],
     'data': [
         'views/sale_order_view.xml',
     ],
