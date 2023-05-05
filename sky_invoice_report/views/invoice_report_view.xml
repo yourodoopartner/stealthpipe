@@ -218,7 +218,7 @@
                                         <td class="text-center">
                                             <span t-field="line.quantity" />
                                             <span t-field="line.product_uom_id"
-                                                groups="uom.group_uom" />
+                                                groups="uom.group_uom" />   
                                         </td>
                                         <td
                                             t-attf-class="text-center {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }} ">
