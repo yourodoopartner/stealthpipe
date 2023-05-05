@@ -151,15 +151,14 @@
                                                     <t t-if="line.product_id.id"><span t-field="line.product_qty" t-value=" "/></t>
                                                 </td>
                                                 <td class="text-center">
-                                                    <span t-options='{"widget": "monetary", "display_currency": o.currency_id}'
-                                                          t-field="line.price_unit"/>
+                                                    <t t-if="line.product_id.id"><span t-options='{"widget": "monetary", "display_currency": o.currency_id}' t-field="line.price_unit" t-value=" "/></t>
                                                 </td>
                                                 <td class="text-center">
-                                                    <span t-field="line.price_subtotal"
-                                                          t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                                    <t t-if="line.product_id.id"><span t-field="line.price_subtotal"
+                                                          t-options='{"widget": "monetary", "display_currency": o.currency_id}' t-value=" "/></t>
                                                 </td>
                                                 <td class="text-center">
-                                                    <span>0</span>
+                                                    <t t-if="line.product_id.id"><span>0</span></t>
                                                 </td>
                                             </tr>
                                         </t>
