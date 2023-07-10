@@ -20,6 +20,7 @@
         'data/stock_sequence.xml',
         'security/ir.model.access.csv',
         'wizard/add_landed_cost_wiz_view.xml',
+        'wizard/add_operation_type_wiz_view.xml',
         'reports/stock_picking_report.xml',
         'reports/bill_of_lading.xml',
         'views/stock_picking.xml',

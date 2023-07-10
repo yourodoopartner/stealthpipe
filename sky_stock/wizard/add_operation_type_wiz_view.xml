@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="operation_type_wiz_view" model="ir.ui.view">
+        <field name="name">operation.type.form.wiz</field>
+        <field name="model">operation.type.wiz</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="code" invisible="1"/>
+                    <field name="warehouse_id"/>
+                    <field name="picking_type_id" domain="[('code','=',code),('warehouse_id','=',warehouse_id)]"/>
+                </group>
+                <footer>
+                    <button name="change_picking_type" string="Change" type="object" class="btn-primary"/>
+                    <button special="cancel" string="Cancel" class="btn-danger"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_operation_type_wiz" model="ir.actions.act_window">
+        <field name="name">Change operation Type</field>
+        <field name="res_model">operation.type.wiz</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

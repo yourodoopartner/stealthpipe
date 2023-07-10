@@ -7,18 +7,21 @@
             <field name="inherit_id" ref="stock.view_picking_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='origin']" position="after">
-                    <field name="bill_of_lading" readonly="1"
-                           attrs="{'invisible': [('picking_type_code', 'not in', ['incoming','outgoing'])]}"/>
+                    <field name="bill_of_lading" readonly="1"/>
                 </xpath>
                 <xpath expr="//form/header" position="inside">
-                    <button name="%(action_report_bill_of_lading)d" type="action" string="Bill of Lading"
-                            attrs="{'invisible': [('picking_type_code', 'not in', ['incoming','outgoing'])]}"/>
+                    <button name="%(action_report_bill_of_lading)d" type="action" string="Bill of Lading"/>
+                    <button name="action_picking_wiz" type="object" string="Change operation type"
+                            attrs="{'invisible': ['|',('state','not in',['confirmed','assigned']),('picking_type_code','=','internal')]}" class="btn btn-primary"/>
                 </xpath>
                 <xpath expr="//button[@name='button_validate'][1]" position="attributes">
                     <attribute name="context">{'landed_cost': True}</attribute>
                 </xpath>
                 <xpath expr="//button[@name='button_validate'][2]" position="attributes">
                     <attribute name="context">{'landed_cost': True}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='carrier_id']" position="attributes">
+                    <attribute name="options">{}</attribute>
                 </xpath>
                 <xpath expr="//field[@name='move_ids_without_package']/tree" position="inside">
                     <field name="landed_cost"

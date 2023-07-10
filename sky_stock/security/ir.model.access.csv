@@ -2,3 +2,4 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_landed_amount,access.laneded.amount,model_landed_cost_amount,,1,1,1,1
 access_landed_cost_amt,access.laneded.cost.amt,model_landed_cost_amt,,1,1,1,1
 access_landed_amount_wiz,access.laneded.amount.wiz,model_landed_cost_wiz,,1,1,1,1
+access_destination_location_wiz,access.destination.location.wiz,model_operation_type_wiz,,1,1,1,1

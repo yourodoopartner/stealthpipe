@@ -28,8 +28,7 @@ class Picking(models.Model):
         """
         res = super(Picking, self).create(vals_lst)
         for picking in res:
-            if picking.picking_type_code in ["incoming", "outgoing"]:
-                picking.bill_of_lading = self.env['ir.sequence'].next_by_code('bill.lading.seq',
+            picking.bill_of_lading = self.env['ir.sequence'].next_by_code('bill.lading.seq',
                                                                               sequence_date=False) or _('New')
         return res
 
@@ -173,4 +172,21 @@ class Picking(models.Model):
             'view_mode': 'tree,form',
             'view_type': 'form',
             'domain': [('picking_ids', '=', self.id)]
+        }
+
+    def action_picking_wiz(self):
+        """
+        This method is used for open picking type wizard
+        ------------------------------------------------
+        @param self : object pointer
+        """
+        return {
+            'name': 'Change operation type',
+            'type': 'ir.actions.act_window',
+            'res_model': 'operation.type.wiz',
+            'view_mode': 'form',
+            'view_type': 'form',
+            'context': {'default_code': self.picking_type_id.code,
+                        'default_picking_type_id':self.picking_type_id.id},
+            'target': 'new'
         }

@@ -127,12 +127,21 @@
                                         </tr>
                                         <tr style="width:100%;  border-top:1px solid;">
                                             <td style="width:42%; text-align: center; border-right:2px solid;border-bottom:1px solid; border-bottom-color:gray; border-left:2px solid; vertical-align:middle;" class="text-center">
+                                                <span t-field="o.partner_id.name"/>
+                                                <br/>
                                                 <span t-field="o.partner_id.street"/>
-                                                &#160;<span t-field="o.partner_id.street2"/>
+                                                <span t-field="o.partner_id.street2"/>
+                                                <t t-if="o.partner_id.street or o.partner_id.street2">
+                                                    ,
+                                                </t>
                                                 &#160;<span t-field="o.partner_id.city"/>
-                                                &#160;<span t-field="o.partner_id.state_id"/>
+                                                <br/>
+                                                <t t-if="o.partner_id.state_id">
+                                                    <span t-field="o.partner_id.state_id"/>,
+                                                </t>
                                                 &#160;<span t-field="o.partner_id.zip"/>
-                                                &#160;<span t-field="o.partner_id.country_id"/>
+                                                <br/>
+                                                <span t-field="o.partner_id.country_id"/>
                                             </td>
                                             <td style="width:30%; text-align: center; border-top: 1px solid; border: 1px solid;border-bottom: 1px ; vertical-align:middle;"
                                                 class="text-center">
@@ -140,7 +149,12 @@
                                             </td>
                                             <td style="width:14%; text-align: center; border: 1px solid; vertical-align:middle;"
                                                 class="text-center">
-                                                <span t-field="o.origin"/>
+                                                <t t-if="o.sale_id">
+                                                    <span t-field="o.sale_id.client_order_ref"/>
+                                                </t>
+                                                <t t-else="">
+                                                    <span t-field="o.origin"/>
+                                                </t>
                                             </td>
                                             <td style="width:14%; text-align: center; border-right:2px solid;  border-left:2px solid; vertical-align:middle;"
                                                 class="text-center">
