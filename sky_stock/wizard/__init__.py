@@ -6,3 +6,4 @@
 #
 ##########################################################################################
 from . import add_landed_cost_wiz
+from . import add_operation_type_wiz
