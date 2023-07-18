@@ -29,7 +29,7 @@ class Picking(models.Model):
         res = super(Picking, self).create(vals_lst)
         for picking in res:
             picking.bill_of_lading = self.env['ir.sequence'].next_by_code('bill.lading.seq',
-                                                                             sequence_date=False) or _('New')
+                                                                              sequence_date=False) or _('New')
         return res
 
     def _action_done(self):
