@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="paperformat_canada_custom_report" model="report.paperformat">
+            <field name="name">Canada Custom Report PaperFormate</field>
+            <field name="default" eval="True"/>
+            <field name="format">Letter</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">0</field>
+            <field name="margin_bottom">25</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_spacing">0</field>
+            <field name="dpi">90</field>
+        </record>
+
+         <record id="action_canada_custom_report" model="ir.actions.report">
+            <field name="name">Canada Custom Report</field>
+            <field name="model">purchase.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">sky_custom_invoice.canada_custom_report</field>
+            <field name="report_file">sky_custom_invoice.canada_custom_report</field>
+            <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="sky_custom_invoice.paperformat_canada_custom_report"/>
+        </record>
+    </data>
+</odoo>
