@@ -20,9 +20,6 @@
                 <xpath expr="//button[@name='button_validate'][2]" position="attributes">
                     <attribute name="context">{'landed_cost': True}</attribute>
                 </xpath>
-                <xpath expr="//field[@name='carrier_id']" position="attributes">
-                    <attribute name="options">{}</attribute>
-                </xpath>
                 <xpath expr="//field[@name='move_ids_without_package']/tree" position="inside">
                     <field name="landed_cost"
                            attrs="{'column_invisible': [('parent.picking_type_code', '!=', 'incoming')]}"
