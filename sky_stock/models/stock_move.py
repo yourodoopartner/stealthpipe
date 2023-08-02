@@ -48,4 +48,7 @@ class StockMove(models.Model):
         :return:
         """
         for rec in self:
-            rec.final_cost = rec.total_landed_cost / rec.product_uom_qty
+            if rec.product_uom_qty > 0:
+                rec.final_cost = rec.total_landed_cost / rec.product_uom_qty
+            else:
+                rec.final_cost = 0.0
