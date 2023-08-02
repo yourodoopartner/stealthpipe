@@ -25,6 +25,7 @@
         'reports/bill_of_lading.xml',
         'views/stock_picking.xml',
         'views/sale_order_line_view.xml',
+        'views/purchase_order_line_view.xml',
     ],
     'application': True,
     'installable': True,
