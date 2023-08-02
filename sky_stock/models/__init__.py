@@ -9,3 +9,4 @@ from . import stock_picking
 from . import landed_cost_amount
 from . import stock_move
 from . import sale_order_line
+from . import purchase_order_line
