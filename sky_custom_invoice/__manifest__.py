@@ -17,10 +17,11 @@
     """,
     'author': 'Skyscend Business Solutions',
     'website': 'http://www.skyscendbs.com',
-    'depends': ['purchase',],
+    'depends': ['purchase', 'sale'],
     'data': [
         'views/template_view.xml',
-        'views/canada_custom_report_view.xml',
+        'views/purchase_canada_custom_report_view.xml',
+        'views/sale_canada_custom_report_view.xml',
     ],
     'installable': True,
     'auto_install': False

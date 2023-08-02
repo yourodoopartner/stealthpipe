@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
-    <template id="canada_custom_report">
+    <template id="purchase_canada_custom_report">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.basic_layout">
@@ -38,6 +38,7 @@
                             <td rowspan="2" style="width:50%; border: 1pt solid black;">
                                 <span>1.    Vendor (name and address) - Vendeur (nom et adresse)</span>
                                 <br/>
+                                <b style="font-size: 10px;"><span t-field="o.partner_id.name"/></b><br/>
                                 <b style="font-size: 10px;"><span t-field="o.partner_id.street"/></b><br/>
                                 <b style="font-size: 10px;"><span t-field="o.partner_id.street2"/></b><br/>
                                 <b style="font-size: 10px;">
@@ -137,7 +138,11 @@
                                 <span>15.   Total</span>
                             </td>
                         </tr>
+                        <t t-set="totals_weight" t-value="0"/>
                         <t t-foreach="o.order_line" t-as="line">
+                            <t t-set="weight" t-value="(line.product_uom_qty*line.product_id.weight)"/>
+                            <t t-set="weight_uom" t-value="line.product_id.weight_uom_name"/>
+                            <t t-set="totals_weight" t-value="totals_weight + weight"/>
                             <tr style="width:100%; border-right: 1px solid; border-left: 1px solid;">
                                 <td style="border-style:none;border-left:1px solid;">
                                     <center><b style="font-size: 10px;"><span t-field="line.sequence"/></b></center>
@@ -146,7 +151,7 @@
                                     <b style="font-size: 10px;"><span t-field="line.name"/></b>
                                 </td>
                                 <td style="border-style:none;border-left:1px solid;">
-                                    <center><b style="font-size: 10px;"><span t-field="line.product_qty"/></b></center>
+                                    <center><b style="font-size: 10px;"><span t-field="line.product_qty"/> <span t-field="line.product_uom"/></b></center>
                                 </td>
                                 <td class="text-right" style="border-style:none;border-left:1px solid;">
                                     <b style="font-size: 10px;"><span t-field="line.price_unit"/></b>
@@ -158,6 +163,7 @@
                         </t>
                     </table>
                     <table class="table" style="font-size: 7px; margin-top:0pt; margin-bottom:0pt;">
+
                         <tr>
                             <td style="border-style:none;width:49%;border-left: 1px solid; border-top: 1px solid;" rowspan="2">
                                 <span>18.   If any of fields 1 to 17 are included on an attached commercial invoice, check this box
@@ -177,7 +183,8 @@
                         </tr>
                         <tr>
                             <td width="15%" style=" border-style:none;border-right: 1pt solid black; border-top: 1pt solid black;">
-                                <span>Net</span>
+                                <span>Net</span><br/>
+                                <center><t t-if="totals_weight"><b style="font-size: 10px;"><span t-esc="'%.2f'% totals_weight"/> <span t-esc="weight_uom"/></b></t></center>
                             </td>
                             <td width="11%" style="border-style:none; border-top: 1pt solid black;">
                                 <span>Gross - Brut</span>
@@ -186,7 +193,6 @@
                                 <b style="font-size: 10px;"><span t-field="o.amount_total"/></b>
                             </td>
                         </tr>
-
                     </table>
                     <table class="table" style="font-size: 7px; margin-top:0pt; margin-bottom:0pt;">
                         <tr style=" border: 1pt solid black;">
