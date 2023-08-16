@@ -8,6 +8,8 @@
 from odoo import models, fields, api, _, tools
 from datetime import date
 from odoo.exceptions import UserError
+import pandas as pd
+from odoo.modules.module import get_module_path
 
 
 class Picking(models.Model):
@@ -190,3 +192,37 @@ class Picking(models.Model):
                         'default_picking_type_id':self.picking_type_id.id},
             'target': 'new'
         }
+
+    def create_reciept(self):
+        module_path = get_module_path('sky_stock')
+        module_path += '/Inventory.xlsx'
+        excel_data = pd.read_excel(module_path,sheet_name=['ICM', 'WLV', 'DAN', 'STA', 'WTS'])
+
+        warehouse = self.env['stock.warehouse']
+        product_object = self.env['product.product']
+        for data in excel_data:
+            data_value = pd.DataFrame(excel_data.get(data),columns=['Internal Reference', 'Total Footage', 'Total Costs'])
+            move_list = []
+            stock_dict = {}
+            receipt_type_id = warehouse.search([('code','=',data)]).in_type_id
+            stock_dict.update({
+                'picking_type_id': receipt_type_id.id,
+                'location_dest_id':receipt_type_id.default_location_dest_id.id,
+                'location_id': receipt_type_id.default_location_dest_id.id
+            })
+            for product, quantity, unit_price in zip(data_value['Internal Reference'], data_value['Total Footage'],
+                                                     data_value['Total Costs']):
+                product_id = product_object.search([('name','=',product)])
+                move_list.append((0, 0, {
+                    'product_id': product_id.id,
+                    'price_unit': unit_price,
+                    'product_uom_qty': quantity,
+                    'name': product,
+                    'product_uom': product_id.uom_id,
+                    'location_id': receipt_type_id.default_location_dest_id.id,
+                    'location_dest_id': receipt_type_id.default_location_dest_id.id,
+                }))
+            stock_dict.update({
+                'move_ids_without_package': move_list
+            })
+            self.create(stock_dict)

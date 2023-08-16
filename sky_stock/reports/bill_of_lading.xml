@@ -242,6 +242,11 @@
                                                         <span t-field="line.purchase_line_id.name"/>
                                                     </strong>
                                                 </t>
+                                                <t t-elif="line.sale_line_id">
+                                                    <strong>
+                                                        <span t-field="line.sale_line_id.name"/>
+                                                    </strong>
+                                                </t>
                                                 <t t-else="">
                                                     <strong>
                                                         <span t-field="line.description_picking"/>
