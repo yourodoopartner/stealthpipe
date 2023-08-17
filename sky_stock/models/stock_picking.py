@@ -208,7 +208,7 @@ class Picking(models.Model):
             stock_dict.update({
                 'picking_type_id': receipt_type_id.id,
                 'location_dest_id':receipt_type_id.default_location_dest_id.id,
-                'location_id': receipt_type_id.default_location_dest_id.id
+                'location_id': receipt_type_id.default_location_src_id.id
             })
             for product, quantity, unit_price in zip(data_value['Internal Reference'], data_value['Total Footage'],
                                                      data_value['Total Costs']):
@@ -219,7 +219,7 @@ class Picking(models.Model):
                     'product_uom_qty': quantity,
                     'name': product,
                     'product_uom': product_id.uom_id,
-                    'location_id': receipt_type_id.default_location_dest_id.id,
+                    'location_id': receipt_type_id.default_location_src_id.id,
                     'location_dest_id': receipt_type_id.default_location_dest_id.id,
                 }))
             stock_dict.update({
