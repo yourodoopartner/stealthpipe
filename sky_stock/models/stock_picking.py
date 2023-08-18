@@ -26,7 +26,7 @@ class Picking(models.Model):
         Overridden create() method to set the bill_of_lading on the Stock Picking
         -------------------------------------------------------------------------
         :param vals_lst: A list of dictionary containing fields and values
-        :return: A newly created recordset.
+        :return: A newly created recordset
         """
         res = super(Picking, self).create(vals_lst)
         for picking in res:
