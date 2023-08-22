@@ -38,4 +38,5 @@
             <field name="binding_type">report</field>
             <field name="paperformat_id" ref="sky_custom_invoice.paperformat_canada_custom_report"/>
         </record>
+    </data>
 </odoo>
