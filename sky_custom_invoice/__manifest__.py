@@ -17,7 +17,7 @@
     """,
     'author': 'Skyscend Business Solutions',
     'website': 'http://www.skyscendbs.com',
-    'depends': ['purchase', 'sale'],
+    'depends': ['purchase', 'sale_management'],
     'data': [
         'views/template_view.xml',
         'views/purchase_canada_custom_report_view.xml',
