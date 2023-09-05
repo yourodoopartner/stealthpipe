@@ -10,3 +10,5 @@ from . import landed_cost_amount
 from . import stock_move
 from . import sale_order_line
 from . import purchase_order_line
+from . import stock_quant
+
