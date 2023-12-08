@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    	<record model="ir.ui.view" id="wizard_import_product">
+            <field name="name">wizard.import.product.form</field>
+            <field name="model">wizard.product.data</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Import Product Data">
+                	<sheet>
+	                	<group>
+		                    <field name="csv_file" required="1" filename="csv_file_name"/>
+		                    <field name="csv_file_name" invisible="1"/>		                    
+	                    </group>
+                    </sheet>
+                    <footer>
+	                    <button class="oe_highlight" string="Import" name="upload_product_data" type="object"/>
+	                    <button class="oe_link" special="cancel" string="Cancel"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+        
+       <record id="action_product_data" model="ir.actions.act_window">
+	            <field name="name">Update Product Data</field>
+	            <field name="res_model">wizard.product.data</field>
+	            <field name="view_mode">form</field>
+	            <field name="view_id" ref="wizard_import_product"/>
+	            <field name="target">new</field>
+      </record>
+      
+      <!-- menuitem id="menu_product_data" name="Import Product Data" parent="sale.sale_menu_root"
+              action="action_product_data" sequence="30"/-->
+      
+      
+ </odoo>      
+ 

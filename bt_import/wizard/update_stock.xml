@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    	<record model="ir.ui.view" id="wizard_update_stock">
+            <field name="name">wizard.update.stock</field>
+            <field name="model">wizard.update.stock</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Import Stock Data">
+                	<sheet>
+	                	<group>
+		                    <field name="csv_file" required="1" filename="csv_file_name"/>
+		                    <field name="csv_file_name" invisible="1"/>		                    
+	                    </group>
+                    </sheet>
+                    <footer>
+	                    <button class="oe_highlight" string="Import" name="upload_product_stock" type="object" invisible="0"/>
+	                    <button class="oe_link" special="cancel" string="Cancel"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+        
+       	<record id="action_update_product_stock" model="ir.actions.act_window">
+	        <field name="name">Import Stock Data</field>
+	        <field name="res_model">wizard.update.stock</field>
+	        <field name="view_mode">form</field>
+	        <field name="view_id" ref="wizard_update_stock"/>
+	        <field name="target">new</field>
+      	</record>
+      
+      <!-- menuitem id="menu_update_stock" name="Import Stock Data" parent="purchase.menu_procurement_management"
+              action="action_update_stock" sequence="17"/-->
+      
+      
+ </odoo>      
+ 
