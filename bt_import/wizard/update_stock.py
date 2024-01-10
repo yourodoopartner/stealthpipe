@@ -13,12 +13,13 @@ class WizardUpdateStock(models.TransientModel):
     csv_file = fields.Binary('CSV File', required=True)
     
     
-    def create_move(self, product, qty, location, dest_location):
+    def create_move(self, product, qty, price, location, dest_location):
         move_vals = {
             'name': _('Product Inventory Update'),
             'product_id': product.id,
             'product_uom': product.uom_id and product.uom_id.id or False,
             'product_uom_qty': qty,
+            'price_unit': price,
             'company_id': self.env.user.company_id.id,
             'state': 'confirmed',
             'location_id': location.id,
@@ -57,7 +58,8 @@ class WizardUpdateStock(models.TransientModel):
                     if not product_id:
                         not_product_list.append(product)   
                     if product_id:
-                        product_id.standard_price = raw.get('Cost',False) or 0
+                        # product_id.standard_price = raw.get('Cost',False) or 0
+                        price = raw.get('Cost',False) or 0
                         product_domain = [('name','=',product), ('product_tmpl_id', '=', product_id.id)]
                         product_variant_id = self.env['product.product'].search(product_domain, limit=1)
                         print('pppppppppppppppppp',product_variant_id)
@@ -68,9 +70,9 @@ class WizardUpdateStock(models.TransientModel):
                             if stock_location and virtual_location:
                                 qty = float(raw.get('Total Footage',0))
                                 if qty > 0:
-                                    move = self.create_move(product_variant_id, qty, virtual_location, stock_location)
+                                    move = self.create_move(product_variant_id, qty, price, virtual_location, stock_location)
                                 if qty < 0:
-                                    move = self.create_move(product_variant_id, -qty, stock_location, virtual_location)
+                                    move = self.create_move(product_variant_id, -qty, price, stock_location, virtual_location)
                                 count += 1
             _logger.info("******************Count................%s", count)
             _logger.info("******************not product_variant_id.............%s", not_product_list)
