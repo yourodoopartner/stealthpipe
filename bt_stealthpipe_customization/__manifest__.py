@@ -3,10 +3,10 @@
 
 {
     'name': 'BT Stealthpipe Customization',
-    'version': '1.0.0',
-    'summary': 'BT Stealthpipe Configuration',
+    'version': '1.0.1',
+    'summary': 'BT Stealthpipe Customization',
     'description': """
-        BT Stealthpipe Configuration.
+        BT Stealthpipe Customization.
     """,
     'author': 'BroadTech IT Solutions Pvt Ltd',
     'website': 'http://www.broadtech-innovations.com',

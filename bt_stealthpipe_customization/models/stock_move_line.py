@@ -8,8 +8,6 @@ class StockMoveLine(models.Model):
 
 
 
-
-
 class StockValuationLayer(models.Model):
     _inherit = 'stock.valuation.layer'
 
