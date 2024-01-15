@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+		<record id="view_print_stock_move_form" model="ir.ui.view">
+            <field name="name">print.stock.move.form</field>
+            <field name="model">print.stock.move</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+	            <form string="Print Stock Move xls Report">
+                	<field name="report_printed" invisible="1"/>
+                	<group attrs="{'invisible':[('report_printed','!=',False)]}">
+		        	    <p><b>Do you wish to print xls report?</b></p>
+		        	</group>
+		        	<group attrs="{'invisible':[('report_printed','=',False)]}">
+		        	    <field name="file_name" invisible="1"/>
+		        		<field name="file" readonly="1" filename="file_name"/>
+		        	</group>
+			        <footer>
+			         	<button string='Print' name="action_print" type="object" class="btn-primary"/>
+			            <button string="Cancel" class="oe_link" special="cancel"/>
+			        </footer>
+	            </form>
+            </field>
+        </record>
+       
+        <record id="action_print_stock_move" model="ir.actions.act_window">
+		    <field name="name">Print Stock Move xls</field>
+		    <field name="type">ir.actions.act_window</field>
+		    <field name="res_model">print.stock.move</field>
+		    <field name="view_mode">form</field>
+		    <field name="target">new</field>
+		    <field name="binding_model_id" ref="stock.model_stock_move" />
+		    <field name="binding_view_types">form,list</field>
+		</record>
+		
+        <!--  menuitem  id="menu_print_purchase_order_report" action="action_print_purchase_order"
+       		sequence="211" parent="account.menu_finance_reports" /-->
+        
+</odoo>

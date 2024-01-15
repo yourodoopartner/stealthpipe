@@ -12,7 +12,9 @@
     'website': 'http://www.broadtech-innovations.com',
     'depends': ['stock','base','sale','account','sale_management','sky_stock'],
     'data': [
+        'security/ir.model.access.csv',
         'views/stock_view.xml',
+        'wizard/stock_move_report_xls.xml',
     ],
 
     'installable': True,
