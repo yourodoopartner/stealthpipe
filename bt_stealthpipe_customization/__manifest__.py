@@ -3,7 +3,7 @@
 
 {
     'name': 'BT Stealthpipe Customization',
-    'version': '1.0.1',
+    'version': '1.0.2',
     'summary': 'BT Stealthpipe Customization',
     'description': """
         BT Stealthpipe Customization.

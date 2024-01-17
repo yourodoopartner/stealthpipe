@@ -21,6 +21,8 @@ class PrintStockMove(models.TransientModel):
     file = fields.Binary('Stock Move Report')
     file_name = fields.Char('File Name')
     report_printed = fields.Boolean('Report Printed')
+    start_date = fields.Date('Start Date')
+    end_date = fields.Date('End Date', default=fields.Date.context_today)
     
     
     def action_print(self):
@@ -28,10 +30,14 @@ class PrintStockMove(models.TransientModel):
         column_heading_style = easyxf('font:height 200;font:bold True;align:horiz left;align:vertical center;')
         worksheet = workbook.add_sheet('Stock Move xls')
         row = 0
-        active_list = self._context.get('active_ids', [])
+        # active_list = self._context.get('active_ids', [])
         for wizard in self:
-                stock_moves = self.env['stock.move'].browse(active_list)
-            
+                stock_moves = []
+                if wizard.start_date:
+                    stock_moves = self.env['stock.move'].search([('date', '>=', wizard.start_date), ('date', '<=', wizard.end_date)])
+                else:
+                    stock_moves = self.env['stock.move'].search([('date', '<=', wizard.end_date)])
+                
                 # Description (Product), Diameter, Quantity in Feet (Total Footage), Quantity in Lengths (Pieces), Landed Cost (Cost).
                 worksheet.write(row, 0, _('Description'), column_heading_style)
                 worksheet.write(row, 1, _('Diameter'), column_heading_style)
