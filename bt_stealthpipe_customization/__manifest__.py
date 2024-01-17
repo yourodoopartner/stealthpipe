@@ -13,6 +13,7 @@
     'depends': ['stock','base','sale','account','sale_management','sky_stock'],
     'data': [
         'security/ir.model.access.csv',
+        'security/stock_picking_type_group_view.xml',
         'views/stock_view.xml',
         'wizard/stock_move_report_xls.xml',
     ],

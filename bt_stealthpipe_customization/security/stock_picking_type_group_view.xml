@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+         <record id="oprn_types_access" model="ir.module.category">
+            <field name="name">Stock Picking Type Restriction</field>
+        </record>
+
+          <!--Access to Operation Types Group-->
+         <record id="group_oprn_types_access" model="res.groups">
+            <field name="name">Access to Operation Types</field>
+            <field name="category_id" ref="bt_stealthpipe_customization.oprn_types_access"/>
+        </record>
+    </data>
+</odoo>
