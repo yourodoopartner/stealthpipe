@@ -7,7 +7,7 @@
 ##########################################################################################
 {
     'name': 'Sky Custom Stock',
-    'version': '15.0.0.1',
+    'version': '15.0.0.2',
     'category': 'Stock',
     'license': 'AGPL-3',
     'description': """
@@ -27,6 +27,7 @@
         'views/sale_order_line_view.xml',
         'views/purchase_order_line_view.xml',
         'views/stock_quant.xml',
+        'views/stock_move_view.xml',
     ],
     'application': True,
     'installable': True,

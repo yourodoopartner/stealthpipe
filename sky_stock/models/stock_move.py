@@ -11,7 +11,8 @@ from odoo import models, fields, api
 class StockMove(models.Model):
     _inherit = "stock.move"
 
-    landed_cost = fields.Float('Landed Cost', copy=False)
+    landed_cost = fields.Float('Landed Cost', copy=False, group_operator="avg")
+    landed_cost_per_foot = fields.Float('Landed Cost per foot', copy=False)
     total_landed_cost = fields.Float('Total Cost ', compute='_cal_total_landed_cost', copy=False)
     product_cost = fields.Float('Product Cost', compute='_cal_product_cost', copy=False)
     final_cost = fields.Float('Final Cost', compute='_cal_final_cost', copy=False)

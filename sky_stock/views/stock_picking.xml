@@ -24,6 +24,9 @@
                     <field name="landed_cost"
                            attrs="{'column_invisible': [('parent.picking_type_code', '!=', 'incoming')]}"
                            readonly="1"/>
+                    <field name="landed_cost_per_foot"
+                           attrs="{'column_invisible': [('parent.picking_type_code', '!=', 'incoming')]}"
+                           readonly="1"/>
                     <field name="product_cost"
                            attrs="{'column_invisible': [('parent.picking_type_code', '!=', 'incoming')]}"
                            string="Product Cost"/>
