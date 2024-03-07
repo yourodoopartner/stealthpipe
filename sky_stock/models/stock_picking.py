@@ -129,7 +129,9 @@ class Picking(models.Model):
                         else:
                             towrite_dict[valuation.get('move_id')] += value
         for key, value in towrite_dict.items():
-            self.env['stock.move'].browse(key).write({'landed_cost': value})
+            value_per_foot = value/total_qty
+            self.env['stock.move'].browse(key).write({'landed_cost': value,
+                                                      'landed_cost_per_foot': value_per_foot,})
         return True
 
     def get_valuation_lines(self):
