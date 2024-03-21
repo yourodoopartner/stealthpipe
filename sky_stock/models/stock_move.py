@@ -17,6 +17,7 @@ class StockMove(models.Model):
     product_cost = fields.Float('Product Cost', compute='_cal_product_cost', copy=False)
     final_cost = fields.Float('Final Cost', compute='_cal_final_cost', copy=False)
     lengths = fields.Float('Lengths', related='sale_line_id.lengths', store=True, readonly=False)
+    diameter = fields.Float('Diameter', store=True, readonly=False)
 
     @api.depends('landed_cost', 'product_cost')
     def _cal_total_landed_cost(self):

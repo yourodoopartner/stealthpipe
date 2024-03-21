@@ -27,15 +27,15 @@
                             <t t-if="company.logo">
                                 <center>
                                     <img t-if="company.logo" t-att-src="image_data_uri(company.logo)"
-                                         style="height: 120px; width: 120px;" alt="Logo"/>
+                                         style="height: 100px; width: 120px;" alt="Logo"/>
                                 </center>
                             </t>
                         </div>
                         <div class="col-6">
                             <center>
-                                <h3 style="margin-bottom:0px;">
+                                <h4 style="margin-bottom:0px;">
                                     <strong>Bon de livraison / Bill of lading</strong>
-                                </h3>
+                                </h4>
                                 <h6 style="margin-top:0px;margin-bottom:0px;">
                                     <strong>Stealth Pipe and Steel Inc.</strong>
                                 </h6>
@@ -65,10 +65,10 @@
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
                     <t t-call="sky_stock.custom_external_layout">
-                        <div class="page container-fluid" style="margin:0px; padding:0px; font-size: 14px;">
+                        <div class="page container-fluid" style="margin:0px; padding:0px; font-size: 12px;">
                             <table style="width:100%; margin:0px; padding:0px;">
                                 <tr style="margin:0px; padding:0px;">
-                                    <table style="width:100%; height:50px; border-collapse: collapse; margin:0px; padding:0px;"
+                                    <table style="width:100%; height: 2px; border-collapse: collapse; margin:0px; padding:0px;"
                                            class="border border-dark">
                                         <tr style="width:100%; margin:0px; border-top:2px solid; padding:0px;">
                                             <th style="width:35%; vertical-align:middle; text-align: center; border-bottom:1px solid; border-right:2px solid;  border-left:2px solid;" class="text-center">
@@ -103,7 +103,7 @@
                                 <t t-foreach="o.move_ids_without_package" t-as="line">
                                     <t t-set="total_weight" t-value="total_weight + (line.product_uom_qty*line.product_id.weight)"/>
                                 <tr style="width:100%;">
-                                    <table style="width:100%; height: 50px; border-collapse: collapse;"
+                                    <table style="width:100%; height: 2px; border-collapse: collapse;"
                                            class="border border-dark">
                                         <tr style="width:100%;">
                                             <td style="width:42%; text-align: center;  border-right:2px solid;border-bottom:2px solid; border-left:2px solid; vertical-align:middle;" class="text-center">
@@ -181,9 +181,9 @@
                                             </td>
                                         </tr>
                                         <tr style="width:100%; border-top:1px solid;">
-                                            <td style="width:34%; height: 2rem; vertical-align:middle; text-align: center; border-right:2px solid;  border-left:2px solid;" colspan="2" class="text-center">
+                                            <td style="width:34%; height: 1rem; vertical-align:middle; text-align: center; border-right:2px solid;  border-left:2px solid;" colspan="2" class="text-center">
                                             </td>
-                                            <td style="width:14%; height: 2rem; vertical-align:middle; text-align: center; border-right:2px solid;  border-left:2px solid;"
+                                            <td style="width:14%; height:1rem; vertical-align:middle; text-align: center; border-right:2px solid;  border-left:2px solid;"
                                                 class="text-center">
                                                 <t t-if="total_weight"><span t-esc="'%.2f'% total_weight"/></t>
                                             </td>
@@ -191,11 +191,11 @@
                                     </table>
                                 </tr>
                                 </t>
-                                <tr style="width:100%; border: 2px solid;">
-                                    <table style="width:100%; height: 50px; border-collapse: collapse; border: 2px solid;"
+                                <tr style="width:100%; height:100px; border: 2px solid;">
+                                    <table style="width:100%; height: 2px; border-collapse: collapse; border: 2px solid;"
                                            class="border border-dark">
                                         <tr style="width:100%; border-top: 0px;">
-                                            <th style="width:17%; vertical-align:middle; text-align: center; border-bottom:2px solid; border-right:1px solid; border-left:2px solid;" class="text-center">
+                                            <th style="width:28%; vertical-align:middle; text-align: center; border-bottom:2px solid; border-right:1px solid; border-left:2px solid;" class="text-center">
                                                 <span>Matériel / Material</span>
                                             </th>
                                             <th style="width:7%; vertical-align:middle; text-align: center; border-bottom:2px solid; border-right:1px solid; border-left:1px solid;"
@@ -206,15 +206,15 @@
                                                 class="text-center">
                                                 <span>Pied / Feet</span>
                                             </th>
-                                            <th style="width:51%; vertical-align:middle; text-align: center; border-bottom:2px solid; border-right:1px solid; border-left:1px solid;"
+                                            <th style="width:40%; vertical-align:middle; text-align: center; border-bottom:2px solid; border-right:1px solid; border-left:1px solid;"
                                                 class="text-center">
                                                 <span>Description</span>
                                             </th>
                                             <th style="width:14%; vertical-align:middle; text-align: center; border-bottom:2px solid; border-left:1px solid; border-right:2px solid;"
                                                 class="text-center">
-                                                <span>Poids (Lbs)
-                                                    <br/>
-                                                    Weight (Lbs)
+                                                <span>Poids/Weight(Lbs)
+<!--                                                    <br/>-->
+<!--                                                    Weight (Lbs)-->
                                                 </span>
                                             </th>
                                         </tr>
@@ -223,7 +223,7 @@
                                         <t t-foreach="o.move_ids_without_package" t-as="line">
                                             <t t-set="totals_pieces" t-value="totals_pieces + line.lengths"/>
                                         <tr style="width:100%; border-right: 2px solid; border-left: 2px solid;">
-                                            <td style="width:17%; vertical-align:middle; text-align: center; border-left:2px solid;"
+                                            <td style="width:28%; vertical-align:middle; text-align: center; border-left:2px solid;"
                                                 class="text-center">
                                                 <strong><span t-field="line.product_id.name"/></strong>
                                             </td>
@@ -235,7 +235,7 @@
                                                 class="text-center">
                                                 <span t-field="line.product_uom_qty"/>
                                             </td>
-                                            <td style="width:51%; vertical-align:middle; text-align: center; border-left: 1px solid;"
+                                            <td style="width:40%; vertical-align:middle; text-align: center; border-left: 1px solid;"
                                                 class="text-center">
                                                 <t t-if="line.purchase_line_id">
                                                     <strong>
@@ -260,8 +260,8 @@
                                             </td>
                                         </tr>
                                         </t>
-                                        <tr style="width:100%; height: 3rem; ">
-                                            <td style="width:17%; vertical-align:middle; text-align: center; border-left:2px solid;"
+                                        <tr style="width:100%; height: 1rem; ">
+                                            <td style="width:28%; vertical-align:middle; text-align: center; border-left:2px solid;"
                                                 class="text-center">
                                             </td>
                                             <td style="width:7%; vertical-align:middle; text-align: center; border-left: 1px solid;"
@@ -270,7 +270,7 @@
                                             <td style="width:11%; vertical-align:middle; text-align: center; border-left: 1px solid;"
                                                 class="text-center">
                                             </td>
-                                            <td style="width:51%; vertical-align:middle; text-align: center; border-left: 1px solid;"
+                                            <td style="width:40%; vertical-align:middle; text-align: center; border-left: 1px solid;"
                                                 class="text-center">
                                             </td>
                                             <td style="width:14%; vertical-align:middle; text-align: center; border-left: 1px solid; border-right:2px solid;"
@@ -280,12 +280,12 @@
                                     </table>
                                 </tr>
                                 <tr style="width:100%; border: 2px solid;">
-                                    <table style="width:100%; height: 50px; border-collapse: collapse; border: 2px solid;"
+                                    <table style="width:100%; height: 2px; border-collapse: collapse; border: 2px solid;"
                                            class="border border-dark">
                                         <tr style="width:100%;">
                                             <td style="width:24%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid;"
                                                 class="text-center">
-                                                <span><strong>Nombre de pièces total<br/>Totals Pieces</strong></span>
+                                                <span><strong>Nombre de pièces total/Totals Pieces</strong></span>
                                             </td>
                                             <td style="width:42%; vertical-align:middle; text-align: center; border-right:2px solid; border-bottom:2px solid; border-left:2px solid;"
                                                 rowspan="2"
@@ -328,19 +328,19 @@
                                     </table>
                                 </tr>
                                 <tr style="width:100%; border: 2px solid;">
-                                    <table style="width:100%; height: 50px; border-collapse: collapse; border: 2px solid;"
+                                    <table style="width:100%; height: 2px; border-collapse: collapse; border: 2px solid;"
                                            class="border border-dark">
                                         <tr style="width:100%;">
-                                            <td style="width:35%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid; border-bottom:1px solid;"
+                                            <td style="width:35%; height:20px; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid; border-bottom:1px solid;"
                                                 class="text-center">
                                                 <span><strong>Expéditeur / Shipper</strong></span>
                                             </td>
-                                            <td style="width:31%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid; border-bottom:1px solid;"
+                                            <td style="width:31%; height:20px; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid; border-bottom:1px solid;"
                                                 class="text-center">
-                                                <span><strong>Transporteur ou Agent<br/>Carrier or Agent</strong>
+                                                <span><strong>Transporteur ou Agent / Carrier or Agent</strong>
                                                 </span>
                                             </td>
-                                            <td style="width:34%; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid; border-bottom:1px solid;"
+                                            <td style="width:34%; height:20px; vertical-align:middle; text-align: center; border-right:2px solid; border-left:2px solid; border-bottom:1px solid;"
                                                 class="text-center">
                                                 <span><strong>Consignee</strong></span>
                                             </td>
@@ -360,17 +360,17 @@
                                             </td>
                                         </tr>
                                         <tr style="width:100%;">
-                                            <td style="width:35%; vertical-align:middle; border: 1px solid; height: 2rem; border-bottom:2px solid; border-right:2px solid; border-left:2px solid;">
+                                            <td style="width:35%; vertical-align:middle; border: 1px solid; height: 1rem; border-bottom:2px solid; border-right:2px solid; border-left:2px solid;">
                                                 <span>
                                                     <b>X</b>
                                                 </span>
                                             </td>
-                                            <td style="width:31%; vertical-align:middle; border: 1px solid; height: 2rem; border-bottom:2px solid; border-left:2px solid;">
+                                            <td style="width:31%; vertical-align:middle; border: 1px solid; height: 1rem; border-bottom:2px solid; border-left:2px solid;">
                                                 <span>
                                                     <b>X</b>
                                                 </span>
                                             </td>
-                                            <td style="width:34%; vertical-align:middle; border: 1px solid; height: 2rem; border-bottom:2px solid; border-right:2px solid; border-left:2px solid;">
+                                            <td style="width:34%; vertical-align:middle; border: 1px solid; height: 1rem; border-bottom:2px solid; border-right:2px solid; border-left:2px solid;">
                                                 <span>
                                                     <b>X</b>
                                                 </span>
@@ -390,7 +390,7 @@
                                     <div class="col-6" style="margin:0px; padding:0px; text-align:right;"><span>Received</span></div>
                                 </div>
                             </div>
-                            <p style="text-align: center; font-size: 12px;">subjects to the rules for the carriage of express and
+                            <p style="text-align: left; font-size: 7px;font-family: monospace;margin-top: 5px;">subjects to the rules for the carriage of express and
                                 non-carload
                                 freight traffic and tariffs in effect on the date of issue of this original shipping
                                 contract (bill of
@@ -410,7 +410,7 @@
                                 if the same where severally, fully and specifically set forth
                                 herein).
                             </p>
-                            <p style="text-align: center; font-size: 12px;">1.
+                            <p style="text-align: left; font-size: 7px;">1.
                                 Approved by the Board of Transport Commissioners for Canada by General Order No. T
                                 5, dated
                                 February 1, 1965 set forth in the Canadian Freight
